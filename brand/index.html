@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Astungkare Spa — Brand Kit v0.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F4EFE7;
+    --gold:#C9A567;
+    --gold-deep:#A8854A;
+    --emerald:#1F3A2E;
+    --emerald-deep:#15281F;
+    --ink:#1A1715;
+    --sand:#E2D5C0;
+    --paper:#FBF7F0;
+    --line:rgba(26,23,21,.12);
+    --line-on-dark:rgba(244,239,231,.14);
+    --serif:'Fraunces', ui-serif, Georgia, serif;
+    --sans:'Inter', ui-sans-serif, system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#0e0c0b;color:var(--cream);font-family:var(--sans);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .canvas{max-width:1480px;margin:0 auto;padding:48px 32px 96px}
+  .deck-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line-on-dark)}
+  .deck-head h1{font-family:var(--serif);font-weight:300;font-size:28px;letter-spacing:-.01em}
+  .deck-head .meta{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.55;display:flex;gap:24px}
+  .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .panel{background:var(--cream);color:var(--ink);border-radius:18px;overflow:hidden;position:relative;min-height:300px;display:flex;flex-direction:column}
+  .panel .pnum{position:absolute;top:14px;right:18px;font-family:var(--sans);font-size:10px;letter-spacing:.2em;opacity:.4;text-transform:uppercase}
+  .panel .plabel{position:absolute;top:14px;left:18px;font-family:var(--sans);font-size:10px;letter-spacing:.2em;opacity:.5;text-transform:uppercase}
+
+  /* spans */
+  .col-2{grid-column:span 2}.col-3{grid-column:span 3}.col-4{grid-column:span 4}.col-6{grid-column:span 6}
+  .row-2{grid-row:span 2}
+
+  /* panel 1: logo cover */
+  .p-logo{background:var(--cream);min-height:420px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:36px}
+  .lotus{width:140px;height:140px;display:block}
+  .wordmark{font-family:var(--serif);font-weight:300;font-size:26px;letter-spacing:.42em;color:var(--gold-deep);text-align:center}
+  .wordmark small{display:block;font-family:var(--sans);font-size:9px;letter-spacing:.5em;margin-top:8px;color:var(--ink);opacity:.55}
+
+  /* panel 2: logo construction */
+  .p-construct{background:var(--paper);min-height:300px;display:flex;align-items:center;justify-content:center;position:relative}
+  .construct-svg{width:78%;height:auto;color:var(--ink)}
+
+  /* panel 3: logo variations */
+  .p-variants{background:var(--cream);min-height:300px;padding:48px 28px 28px;display:flex;align-items:center;justify-content:space-around;gap:18px}
+  .variant{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+  .variant svg{height:62px;width:62px}
+  .variant .vmark{display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:14px;width:100px;height:100px;padding:14px;background:#fff}
+  .variant .vmark.dark{background:var(--emerald);color:var(--gold)}
+  .variant .vmark.gold{background:var(--gold);color:var(--cream)}
+  .variant .vlabel{font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.5}
+
+  /* panel 4: brand essence (dark) */
+  .p-essence{background:var(--emerald);color:var(--cream);min-height:300px;padding:42px 36px;display:flex;flex-direction:column;justify-content:space-between}
+  .p-essence .tagline{font-family:var(--serif);font-weight:300;font-size:46px;line-height:1.05;letter-spacing:-.015em}
+  .p-essence .tagline em{font-style:italic;color:var(--gold)}
+  .p-essence .sub{font-size:12px;letter-spacing:.06em;opacity:.7;max-width:80%}
+  .p-essence .small-cap{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);opacity:.85}
+
+  /* panel 5: color system */
+  .p-color{background:var(--paper);padding:46px 28px 28px;min-height:300px}
+  .swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;height:72%}
+  .sw{border-radius:10px;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;min-height:160px;position:relative;overflow:hidden}
+  .sw .name{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+  .sw .hex{font-family:'SFMono-Regular',Consolas,monospace;font-size:11px;opacity:.85;margin-top:4px}
+  .sw .pct{position:absolute;top:14px;left:14px;font-size:10px;letter-spacing:.2em;opacity:.5}
+
+  /* panel 6: typography */
+  .p-type{background:var(--cream);padding:46px 28px 28px;min-height:300px;display:flex;flex-direction:column;gap:18px}
+  .type-display{font-family:var(--serif);font-weight:300;font-size:54px;line-height:.95;letter-spacing:-.02em;color:var(--ink)}
+  .type-display em{font-style:italic;color:var(--gold-deep)}
+  .type-pair{display:flex;gap:32px;align-items:start;border-top:1px solid var(--line);padding-top:14px}
+  .type-pair > div{flex:1}
+  .type-pair .lbl{font-size:9px;letter-spacing:.24em;text-transform:uppercase;opacity:.5;margin-bottom:6px}
+  .type-pair .specimen-serif{font-family:var(--serif);font-size:18px;letter-spacing:.02em}
+  .type-pair .specimen-sans{font-family:var(--sans);font-size:13px;line-height:1.55;font-weight:400}
+
+  /* panel 7: digital application — hero mock */
+  .p-hero{background:var(--ink);color:var(--cream);min-height:520px;padding:0;position:relative;overflow:hidden}
+  .browser-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:rgba(255,255,255,.04);border-bottom:1px solid var(--line-on-dark)}
+  .browser-bar .dots{display:flex;gap:6px}
+  .browser-bar .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18)}
+  .browser-bar .url{flex:1;background:rgba(255,255,255,.06);border-radius:6px;padding:5px 12px;font-size:11px;font-family:'SFMono-Regular',Consolas,monospace;opacity:.7;text-align:center}
+  .hero-stage{padding:54px 56px;position:relative;height:calc(100% - 42px);display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+  .hero-stage::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 80%, rgba(201,165,103,.18), transparent 55%);pointer-events:none}
+  .hero-eyebrow{font-size:10px;letter-spacing:.36em;color:var(--gold);text-transform:uppercase;margin-bottom:18px}
+  .hero-h1{font-family:var(--serif);font-weight:300;font-size:64px;line-height:.98;letter-spacing:-.02em;margin-bottom:24px}
+  .hero-h1 em{font-style:italic;color:var(--gold)}
+  .hero-sub{font-size:14px;line-height:1.55;opacity:.75;max-width:90%;margin-bottom:32px}
+  .hero-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--ink);font-weight:500;font-size:13px;letter-spacing:.04em;padding:14px 22px;border-radius:999px;text-decoration:none}
+  .hero-cta::after{content:"→"}
+  .hero-meta{display:flex;gap:24px;margin-top:36px;font-size:11px;letter-spacing:.06em;opacity:.6}
+  .hero-meta b{color:var(--gold);font-weight:500}
+  .hero-visual{aspect-ratio:4/5;background:linear-gradient(135deg,#3a2f24 0%,#1f1812 70%);border-radius:20px;position:relative;overflow:hidden;border:1px solid var(--line-on-dark)}
+  .hero-visual::after{content:"FOTO THERAPIST — VILLA SCENE";position:absolute;bottom:18px;left:18px;font-size:10px;letter-spacing:.2em;opacity:.4;font-family:var(--sans)}
+  .hero-visual::before{content:"";position:absolute;inset:30% 25%;border:1px solid var(--gold);border-radius:50%;opacity:.25}
+
+  /* panel 8: physical — gift voucher */
+  .p-voucher{background:var(--sand);min-height:300px;padding:36px;display:flex;align-items:center;justify-content:center}
+  .voucher{background:var(--cream);width:100%;max-width:380px;aspect-ratio:1.7/1;border-radius:14px;padding:24px 28px;display:flex;flex-direction:column;justify-content:space-between;position:relative;box-shadow:0 18px 40px -20px rgba(0,0,0,.35);border:1px solid rgba(0,0,0,.04)}
+  .voucher .v-top{display:flex;justify-content:space-between;align-items:start}
+  .voucher .v-eyebrow{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep);font-weight:500}
+  .voucher .v-amount{font-family:var(--serif);font-weight:300;font-size:42px;letter-spacing:-.02em;color:var(--ink);line-height:1}
+  .voucher .v-amount small{font-size:14px;font-weight:400;opacity:.5;display:inline-block;margin-left:4px}
+  .voucher .v-foot{display:flex;justify-content:space-between;align-items:end;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);opacity:.55}
+
+  /* panel 9: image direction */
+  .p-imagery{background:var(--paper);padding:46px 24px 24px;min-height:300px}
+  .img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .img-tile{aspect-ratio:1;border-radius:8px;position:relative;overflow:hidden;display:flex;align-items:end;padding:10px}
+  .img-tile span{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);opacity:.85;font-weight:500}
+  .img-tile.t1{background:linear-gradient(150deg,#3a2f24,#1f1812)}
+  .img-tile.t2{background:linear-gradient(135deg,#5a4a35,#2d251a)}
+  .img-tile.t3{background:linear-gradient(160deg,#7a6b54,#3d3527)}
+  .img-tile.t4{background:linear-gradient(140deg,#1f3a2e,#0d1d16)}
+  .img-tile.t5{background:linear-gradient(135deg,#c9a567,#8a7146);color:var(--ink)}
+  .img-tile.t5 span{color:var(--ink);opacity:.75}
+  .img-tile.t6{background:linear-gradient(150deg,#2a3d33,#15281f)}
+  .img-cap{margin-top:14px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.55}
+
+  /* panel 10: system detail — booking widget */
+  .p-system{background:var(--emerald-deep);color:var(--cream);min-height:300px;padding:46px 28px 28px}
+  .booking-card{background:rgba(244,239,231,.04);border:1px solid var(--line-on-dark);border-radius:14px;padding:18px;backdrop-filter:blur(8px)}
+  .bf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .bf-field{background:rgba(0,0,0,.18);border:1px solid var(--line-on-dark);border-radius:8px;padding:10px 12px}
+  .bf-field .bl{font-size:9px;letter-spacing:.22em;opacity:.55;text-transform:uppercase}
+  .bf-field .bv{font-family:var(--serif);font-weight:400;font-size:15px;margin-top:2px;color:var(--cream)}
+  .bf-cta{margin-top:14px;display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#0a0a0a;font-weight:600;font-size:13px;padding:13px;border-radius:10px;letter-spacing:.02em}
+  .bf-chip{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);background:rgba(201,165,103,.12);padding:6px 10px;border-radius:999px;margin-bottom:14px;font-weight:500}
+  .bf-chip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(201,165,103,.18)}
+
+  /* panel 11: IG application */
+  .p-social{background:var(--ink);min-height:300px;padding:46px 24px 24px;display:flex;flex-direction:column;align-items:center}
+  .ig-frame{width:100%;max-width:280px;aspect-ratio:1;border-radius:14px;background:var(--cream);padding:18px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+  .ig-frame .ig-tag{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep);font-weight:500}
+  .ig-frame .ig-q{font-family:var(--serif);font-weight:300;font-size:24px;line-height:1.05;letter-spacing:-.01em;color:var(--ink)}
+  .ig-frame .ig-q em{font-style:italic;color:var(--gold-deep)}
+  .ig-frame .ig-bot{display:flex;justify-content:space-between;align-items:end;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);opacity:.5}
+  .social-cap{margin-top:12px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);opacity:.5}
+
+  /* panel 12: services preview */
+  .p-services{background:var(--cream);min-height:300px;padding:46px 28px 28px}
+  .s-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+  .s-row:last-child{border-bottom:0}
+  .s-row .s-name{font-family:var(--serif);font-weight:400;font-size:18px;color:var(--ink)}
+  .s-row .s-name small{font-family:var(--sans);font-size:11px;letter-spacing:.06em;color:var(--ink);opacity:.5;margin-left:8px}
+  .s-row .s-price{font-family:var(--sans);font-size:13px;color:var(--ink);font-weight:500;text-align:right}
+  .s-row .s-price small{display:block;font-size:10px;opacity:.5;font-weight:400;margin-top:2px}
+  .s-row .s-badge{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:500;margin-right:10px}
+
+  /* deck footer */
+  .deck-foot{margin-top:48px;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.4;padding-top:24px;border-top:1px solid var(--line-on-dark)}
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <header class="deck-head">
+    <div>
+      <h1>Astungkare Spa</h1>
+      <div style="font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.5;margin-top:6px">Brand Kit v0.1 · Visual Direction Board</div>
+    </div>
+    <div class="meta">
+      <span>Wellness Brought to You</span>
+      <span>Bali · Canggu HQ</span>
+      <span>2026.05.22</span>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <!-- 1. Logo cover -->
+    <section class="panel p-logo col-3 row-2">
+      <span class="plabel">01 · Mark</span>
+      <span class="pnum">a</span>
+      <svg class="lotus" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="lg1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#D6B57A"/>
+            <stop offset="1" stop-color="#A8854A"/>
+          </linearGradient>
+        </defs>
+        <!-- 5 petal lotus -->
+        <g stroke="url(#lg1)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <!-- center petal -->
+          <path d="M100 60 C 86 85, 86 115, 100 140 C 114 115, 114 85, 100 60 Z"/>
+          <!-- left petal -->
+          <path d="M100 95 C 75 88, 60 105, 62 130 C 80 132, 95 122, 100 110 Z"/>
+          <!-- right petal -->
+          <path d="M100 95 C 125 88, 140 105, 138 130 C 120 132, 105 122, 100 110 Z"/>
+          <!-- outer left -->
+          <path d="M100 110 C 70 118, 48 130, 50 150 C 75 152, 92 140, 100 125 Z"/>
+          <!-- outer right -->
+          <path d="M100 110 C 130 118, 152 130, 150 150 C 125 152, 108 140, 100 125 Z"/>
+          <!-- base line -->
+          <path d="M62 150 L 138 150" stroke-opacity=".5"/>
+        </g>
+      </svg>
+      <div class="wordmark">
+        ASTUNGKARE
+        <small>· SPA ·</small>
+      </div>
+    </section>
+
+    <!-- 2. Brand essence -->
+    <section class="panel p-essence col-3 row-2">
+      <span class="plabel" style="color:rgba(244,239,231,.5)">02 · Essence</span>
+      <span class="pnum" style="color:rgba(244,239,231,.4)">b</span>
+      <div class="small-cap">Wellness Brought to You</div>
+      <div class="tagline">
+        Your villa.<br>
+        Your hour.<br>
+        <em>Our ritual.</em>
+      </div>
+      <div class="sub">A trained therapist arrives at your door with oils, linen, and unhurried attention. Open 24 hours. Canggu, Seminyak, Ubud and beyond.</div>
+    </section>
+
+    <!-- 3. Color -->
+    <section class="panel p-color col-3">
+      <span class="plabel">03 · Color</span>
+      <span class="pnum">c</span>
+      <div class="swatches" style="margin-top:16px">
+        <div class="sw" style="background:var(--cream);color:var(--ink)">
+          <span class="pct">60%</span>
+          <span class="name">Cream</span><span class="hex">#F4EFE7</span>
+        </div>
+        <div class="sw" style="background:var(--gold);color:var(--ink)">
+          <span class="pct">20%</span>
+          <span class="name">Gold</span><span class="hex">#C9A567</span>
+        </div>
+        <div class="sw" style="background:var(--emerald);color:var(--cream)">
+          <span class="pct" style="opacity:.6">10%</span>
+          <span class="name">Emerald</span><span class="hex">#1F3A2E</span>
+        </div>
+        <div class="sw" style="background:var(--ink);color:var(--cream)">
+          <span class="pct" style="opacity:.5">5%</span>
+          <span class="name">Ink</span><span class="hex">#1A1715</span>
+        </div>
+        <div class="sw" style="background:var(--sand);color:var(--ink)">
+          <span class="pct">5%</span>
+          <span class="name">Sand</span><span class="hex">#E2D5C0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Logo construction -->
+    <section class="panel p-construct col-3">
+      <span class="plabel">04 · Construction</span>
+      <span class="pnum">d</span>
+      <svg class="construct-svg" viewBox="0 0 360 220" fill="none">
+        <g stroke="rgba(26,23,21,.18)" stroke-width=".8">
+          <line x1="0" y1="110" x2="360" y2="110"/>
+          <line x1="180" y1="0" x2="180" y2="220"/>
+          <circle cx="180" cy="110" r="80"/>
+          <circle cx="180" cy="110" r="55"/>
+          <circle cx="180" cy="110" r="30"/>
+          <line x1="100" y1="190" x2="260" y2="30" stroke-dasharray="3 4"/>
+          <line x1="100" y1="30" x2="260" y2="190" stroke-dasharray="3 4"/>
+        </g>
+        <g transform="translate(180,110) scale(.85) translate(-100,-100)" stroke="#A8854A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M100 60 C 86 85, 86 115, 100 140 C 114 115, 114 85, 100 60 Z"/>
+          <path d="M100 95 C 75 88, 60 105, 62 130 C 80 132, 95 122, 100 110 Z"/>
+          <path d="M100 95 C 125 88, 140 105, 138 130 C 120 132, 105 122, 100 110 Z"/>
+          <path d="M100 110 C 70 118, 48 130, 50 150 C 75 152, 92 140, 100 125 Z"/>
+          <path d="M100 110 C 130 118, 152 130, 150 150 C 125 152, 108 140, 100 125 Z"/>
+        </g>
+        <text x="20" y="20" font-family="Inter" font-size="9" fill="#1A1715" opacity=".5" letter-spacing="2">5-PETAL LOTUS · CONCENTRIC RHYTHM · GOLDEN RATIO BASE</text>
+        <text x="20" y="210" font-family="Inter" font-size="9" fill="#1A1715" opacity=".5" letter-spacing="2">FIG.04</text>
+      </svg>
+    </section>
+
+    <!-- 5. Typography -->
+    <section class="panel p-type col-3">
+      <span class="plabel">05 · Typography</span>
+      <span class="pnum">e</span>
+      <div class="type-display">
+        Aa Bb<br><em>Mm</em> 24
+      </div>
+      <div class="type-pair">
+        <div>
+          <div class="lbl">Display · Fraunces</div>
+          <div class="specimen-serif">Elevated wellness. Delivered to you.</div>
+        </div>
+        <div>
+          <div class="lbl">UI · Inter</div>
+          <div class="specimen-sans">Balinese Massage · 90 min · IDR 400.000<br><span style="opacity:.5">Book now via WhatsApp · response &lt;5 min</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Logo variants -->
+    <section class="panel p-variants col-3">
+      <span class="plabel">06 · Variants</span>
+      <span class="pnum">f</span>
+      <div class="variant">
+        <div class="vmark">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#A8854A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 25 C 40 40, 40 60, 50 75 C 60 60, 60 40, 50 25 Z"/>
+            <path d="M50 50 C 32 45, 18 55, 20 72 C 38 73, 47 65, 50 58 Z"/>
+            <path d="M50 50 C 68 45, 82 55, 80 72 C 62 73, 53 65, 50 58 Z"/>
+          </svg>
+        </div>
+        <div class="vlabel">Compact</div>
+      </div>
+      <div class="variant">
+        <div class="vmark dark">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#C9A567" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 25 C 40 40, 40 60, 50 75 C 60 60, 60 40, 50 25 Z"/>
+            <path d="M50 50 C 32 45, 18 55, 20 72 C 38 73, 47 65, 50 58 Z"/>
+            <path d="M50 50 C 68 45, 82 55, 80 72 C 62 73, 53 65, 50 58 Z"/>
+          </svg>
+        </div>
+        <div class="vlabel">Reverse</div>
+      </div>
+      <div class="variant">
+        <div class="vmark gold">
+          <span style="font-family:var(--serif);font-size:38px;font-weight:300;color:var(--cream);letter-spacing:-.04em">A</span>
+        </div>
+        <div class="vlabel">Monogram</div>
+      </div>
+      <div class="variant">
+        <div class="vmark" style="background:var(--cream)">
+          <div style="font-family:var(--serif);font-size:11px;letter-spacing:.34em;color:var(--gold-deep);text-align:center;line-height:1.3">
+            ASTUNG<br>KARE<br><span style="font-size:7px;opacity:.6;letter-spacing:.5em">SPA</span>
+          </div>
+        </div>
+        <div class="vlabel">Stack</div>
+      </div>
+    </section>
+
+    <!-- 7. Hero mock - wide -->
+    <section class="panel p-hero col-6">
+      <span class="plabel" style="color:rgba(244,239,231,.5);z-index:2">07 · Hero · Home</span>
+      <span class="pnum" style="color:rgba(244,239,231,.4);z-index:2">g</span>
+      <div class="browser-bar">
+        <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="url">astungkarespa.com</div>
+        <div style="font-size:11px;opacity:.4;font-family:'SFMono-Regular',Consolas,monospace">EN ▾</div>
+      </div>
+      <div class="hero-stage">
+        <div>
+          <div class="hero-eyebrow">Mobile Spa · Canggu · Seminyak · Ubud</div>
+          <h2 class="hero-h1">Spa, brought to your <em>villa.</em></h2>
+          <p class="hero-sub">A trained therapist arrives with oils, linen, and unhurried attention. Book in under a minute. Open 24 hours, 7 days.</p>
+          <a class="hero-cta" href="#">Book in 60 seconds via WhatsApp</a>
+          <div class="hero-meta">
+            <span><b>4.9★</b> · 200+ guests</span>
+            <span><b>≤5 min</b> · WA response</span>
+            <span><b>Today 18:30</b> · earliest slot</span>
+          </div>
+        </div>
+        <div class="hero-visual"></div>
+      </div>
+    </section>
+
+    <!-- 8. Services -->
+    <section class="panel p-services col-3">
+      <span class="plabel">08 · Services</span>
+      <span class="pnum">h</span>
+      <div style="margin-top:8px">
+        <div class="s-row">
+          <div class="s-name">Balinese Massage <small>· 90 min</small></div>
+          <div class="s-price">IDR 400K <small>≈ USD 25</small></div>
+        </div>
+        <div class="s-row">
+          <div class="s-name">Hot Stone <small>· 90 min</small><span class="s-badge" style="margin-left:10px">Most booked</span></div>
+          <div class="s-price">IDR 900K <small>≈ USD 56</small></div>
+        </div>
+        <div class="s-row">
+          <div class="s-name">Lymphatic <small>· 90 min</small></div>
+          <div class="s-price">IDR 600K <small>≈ USD 37</small></div>
+        </div>
+        <div class="s-row">
+          <div class="s-name">Deep Tissue <small>· 60 min</small></div>
+          <div class="s-price">IDR 350K <small>≈ USD 22</small></div>
+        </div>
+        <div class="s-row">
+          <div class="s-name">Facial + Totok Wajah <small>· 90 min</small></div>
+          <div class="s-price">IDR 400K <small>≈ USD 25</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Booking widget -->
+    <section class="panel p-system col-3">
+      <span class="plabel" style="color:rgba(244,239,231,.5)">09 · Booking</span>
+      <span class="pnum" style="color:rgba(244,239,231,.4)">i</span>
+      <div class="bf-chip">Today 18:30 · earliest slot</div>
+      <div class="booking-card">
+        <div class="bf-row">
+          <div class="bf-field"><div class="bl">Therapy</div><div class="bv">Hot Stone</div></div>
+          <div class="bf-field"><div class="bl">Duration</div><div class="bv">90 min</div></div>
+        </div>
+        <div class="bf-row">
+          <div class="bf-field"><div class="bl">When</div><div class="bv">Tonight · 19:00</div></div>
+          <div class="bf-field"><div class="bl">Where</div><div class="bv">Villa Asri, Berawa</div></div>
+        </div>
+        <div class="bf-cta">
+          <span style="font-size:16px">✦</span> Confirm via WhatsApp
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Imagery direction -->
+    <section class="panel p-imagery col-3">
+      <span class="plabel">10 · Imagery</span>
+      <span class="pnum">j</span>
+      <div class="img-grid">
+        <div class="img-tile t1"><span>Hand · Oil pour</span></div>
+        <div class="img-tile t2"><span>Therapist · Villa</span></div>
+        <div class="img-tile t3"><span>Linen · Daylight</span></div>
+        <div class="img-tile t6"><span>Bamboo · Shadow</span></div>
+        <div class="img-tile t4"><span>Drone · Rice field</span></div>
+        <div class="img-tile t5"><span>Flatlay · Oils</span></div>
+      </div>
+      <div class="img-cap">Warm tungsten · hand-shot · no stock people · always in real Bali interiors</div>
+    </section>
+
+    <!-- 11. Voucher -->
+    <section class="panel p-voucher col-3">
+      <span class="plabel">11 · Print · Gift Voucher</span>
+      <span class="pnum">k</span>
+      <div class="voucher">
+        <div class="v-top">
+          <div>
+            <div class="v-eyebrow">Gift of Stillness</div>
+            <div class="v-amount">1.000K<small>IDR</small></div>
+          </div>
+          <svg width="40" height="40" viewBox="0 0 100 100" fill="none" stroke="#A8854A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 25 C 40 40, 40 60, 50 75 C 60 60, 60 40, 50 25 Z"/>
+            <path d="M50 50 C 32 45, 18 55, 20 72 C 38 73, 47 65, 50 58 Z"/>
+            <path d="M50 50 C 68 45, 82 55, 80 72 C 62 73, 53 65, 50 58 Z"/>
+          </svg>
+        </div>
+        <div class="v-foot">
+          <span>Valid 12 mo<br>astungkarespa.com</span>
+          <span>No. 0042</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. IG application -->
+    <section class="panel p-social col-3">
+      <span class="plabel" style="color:rgba(244,239,231,.5)">12 · Social Post</span>
+      <span class="pnum" style="color:rgba(244,239,231,.4)">l</span>
+      <div class="ig-frame">
+        <div class="ig-tag">— Bali · 24/7</div>
+        <div class="ig-q">Some evenings <em>begin</em> with one phone call.</div>
+        <div class="ig-bot">
+          <span>@astungkarespa</span>
+          <span>WA · +62 895 2880 0011</span>
+        </div>
+      </div>
+      <div class="social-cap">Editorial post template · 1:1 · feed-safe</div>
+    </section>
+
+  </div>
+
+  <footer class="deck-foot">
+    <span>Astungkare Spa · Brand Kit v0.1</span>
+    <span>Internal — not for distribution</span>
+    <span>p.01 / 01</span>
+  </footer>
+
+</div>
+</body>
+</html>
