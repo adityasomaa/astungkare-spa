@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { StickyWa } from "@/components/StickyWa";
 import { areas, getArea } from "@/content/areas";
 import { services } from "@/content/services";
+import { AreaArt } from "@/components/graphics/AreaArt";
 import { priceWithUsd } from "@/lib/pricing";
 import { buildWaUrl } from "@/lib/whatsapp";
 
@@ -38,7 +39,8 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
           <div aria-hidden className="absolute inset-0 opacity-90" style={{
             background: "radial-gradient(60% 50% at 80% 95%, rgba(201,165,103,0.18), transparent 60%), linear-gradient(180deg, #1A1715, #14110f)"
           }}/>
-          <div className="container-edge relative">
+          <div className="container-edge relative grid lg:grid-cols-[1.4fr_1fr] gap-12 items-center">
+           <div>
             <Link href="/#areas" className="text-xs tracking-[0.22em] uppercase text-cream/45 hover:text-gold transition mb-6 inline-block">
               ← All areas
             </Link>
@@ -63,6 +65,10 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
                 See all treatments
               </Link>
             </div>
+           </div>
+           <div className="hidden lg:block aspect-[5/3] rounded-2xl overflow-hidden border border-cream/10 bg-emerald-deep">
+             <AreaArt tone="warm" />
+           </div>
           </div>
         </section>
 

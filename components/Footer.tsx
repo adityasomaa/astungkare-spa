@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { site } from "@/lib/site";
+import { PolicyLink } from "@/components/PolicyModal";
 
 export function Footer() {
   return (
@@ -55,8 +56,10 @@ export function Footer() {
 
       <div className="container-edge mt-16 pt-8 border-t border-cream/10 flex flex-wrap justify-between gap-4 text-[11px] text-cream/40 tracking-wide uppercase">
         <span>© {new Date().getFullYear()} Astungkare Spa</span>
-        <div className="flex gap-6">
-          <Link href="/policies" className="hover:text-cream/70">Policies</Link>
+        <div className="flex flex-wrap gap-6">
+          <span className="text-cream/50"><PolicyLink policy="cancellation">Cancellation</PolicyLink></span>
+          <span className="text-cream/50"><PolicyLink policy="conduct">Professional Conduct</PolicyLink></span>
+          <Link href="/policies" className="hover:text-cream/70">All Policies</Link>
           <Link href="/about" className="hover:text-cream/70">About</Link>
         </div>
       </div>

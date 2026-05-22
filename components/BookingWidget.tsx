@@ -5,6 +5,7 @@ import { services } from "@/content/services";
 import { areas } from "@/content/areas";
 import { buildWaUrl } from "@/lib/whatsapp";
 import { formatIdr } from "@/lib/pricing";
+import { PolicyLink } from "@/components/PolicyModal";
 
 export function BookingWidget() {
   const [serviceSlug, setServiceSlug] = useState(services[0].slug);
@@ -133,6 +134,13 @@ export function BookingWidget() {
 
           <p className="mt-3 text-[11px] text-cream/45 text-center tracking-wide">
             Opens WhatsApp with your booking pre-filled · response usually under 5 minutes
+          </p>
+          <p className="mt-4 text-[11px] text-cream/55 text-center leading-relaxed tracking-wide">
+            By confirming you accept our{" "}
+            <span className="text-gold/85"><PolicyLink policy="cancellation">cancellation policy</PolicyLink></span>
+            {" "}and{" "}
+            <span className="text-gold/85"><PolicyLink policy="conduct">professional conduct</PolicyLink></span>
+            {" "}terms.
           </p>
         </div>
       </div>

@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { areas } from "@/content/areas";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function AreasGrid() {
   return (
     <section id="areas" className="bg-cream py-24 md:py-32 border-y border-[color:var(--color-line)]">
       <div className="container-edge">
-        <header className="flex flex-wrap items-end justify-between gap-6 mb-14">
+        <Reveal as="header" className="flex flex-wrap items-end justify-between gap-6 mb-14">
           <div>
             <p className="eyebrow mb-4">04 · Where we serve</p>
             <h2 className="display text-4xl md:text-5xl">
@@ -16,9 +17,9 @@ export function AreasGrid() {
           <p className="text-ink/65 max-w-md leading-relaxed">
             Twelve therapists based across the south. Most arrivals between 0 and 45 minutes.
           </p>
-        </header>
+        </Reveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <Reveal stagger="a" className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {areas.map((a) => (
             <Link
               key={a.slug}
@@ -49,7 +50,7 @@ export function AreasGrid() {
               </span>
             </Link>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

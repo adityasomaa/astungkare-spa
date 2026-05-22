@@ -25,10 +25,12 @@ const faqs = [
   }
 ];
 
+import { Reveal } from "@/components/motion/Reveal";
+
 export function Faq() {
   return (
     <section className="bg-cream py-24 md:py-32 border-t border-[color:var(--color-line)]">
-      <div className="container-edge grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
+      <Reveal className="container-edge grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
         <div className="lg:sticky lg:top-24">
           <p className="eyebrow mb-4">06 · Common questions</p>
           <h2 className="display text-4xl md:text-5xl">
@@ -55,7 +57,7 @@ export function Faq() {
             </details>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

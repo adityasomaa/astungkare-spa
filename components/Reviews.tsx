@@ -1,17 +1,31 @@
 import { reviews } from "@/content/reviews";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function Reviews() {
   return (
     <section className="bg-cream py-24 md:py-32">
       <div className="container-edge">
-        <header className="mb-14">
-          <p className="eyebrow mb-4">05 · Said quietly</p>
-          <h2 className="display text-4xl md:text-5xl max-w-2xl">
-            From <em>guests</em> who came back<br />the next night.
-          </h2>
-        </header>
+        <Reveal as="header" className="mb-14 flex items-end justify-between flex-wrap gap-4">
+          <div>
+            <p className="eyebrow mb-4">05 · Said quietly</p>
+            <h2 className="display text-4xl md:text-5xl max-w-2xl">
+              From <em>guests</em> who came back<br />the next night.
+            </h2>
+          </div>
+          <a
+            href="https://www.google.com/maps/search/Astungkare+Spa+Bali+Home+Spa+Therapist"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 rounded-full border border-[color:var(--color-line)] px-5 py-3 text-sm text-ink hover:bg-[color:var(--color-cream-50)] transition"
+          >
+            <span className="text-gold-deep font-medium">5.0 ★</span>
+            <span className="text-ink/55">·</span>
+            <span>Read all 19 on Google</span>
+            <span aria-hidden>→</span>
+          </a>
+        </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-3">
+        <Reveal stagger="figure" className="grid md:grid-cols-2 gap-3">
           {reviews.map((r, i) => (
             <figure
               key={r.name}
@@ -36,7 +50,7 @@ export function Reviews() {
               </figcaption>
             </figure>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
