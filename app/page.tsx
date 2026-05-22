@@ -9,6 +9,7 @@ import { Faq } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
 import { StickyWa } from "@/components/StickyWa";
 import { orgSchema } from "@/lib/seo";
+import { faqPageSchema } from "@/content/faqs";
 
 export default function HomePage() {
   return (
@@ -26,10 +27,14 @@ export default function HomePage() {
       <Footer />
       <StickyWa />
 
-      {/* LocalBusiness schema for Google */}
+      {/* Structured data for Google */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema()) }}
       />
     </>
   );

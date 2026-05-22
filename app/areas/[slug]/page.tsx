@@ -7,6 +7,7 @@ import { StickyWa } from "@/components/StickyWa";
 import { areas, getArea } from "@/content/areas";
 import { services } from "@/content/services";
 import { AreaArt } from "@/components/graphics/AreaArt";
+import { breadcrumbSchema } from "@/lib/seo";
 import { priceWithUsd } from "@/lib/pricing";
 import { buildWaUrl } from "@/lib/whatsapp";
 
@@ -125,6 +126,18 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
             </div>
           </div>
         </section>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              breadcrumbSchema([
+                { name: "Home", path: "/" },
+                { name: "Areas", path: "/#areas" },
+                { name: area.name, path: `/areas/${area.slug}` }
+              ])
+            )
+          }}
+        />
       </main>
       <Footer />
       <StickyWa />

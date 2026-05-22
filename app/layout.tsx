@@ -47,7 +47,13 @@ export const metadata: Metadata = {
     description: site.description
   },
   robots: { index: true, follow: true },
-  icons: { icon: "/favicon.svg" }
+  icons: { icon: "/favicon.svg" },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
+    other: {
+      "facebook-domain-verification": process.env.NEXT_PUBLIC_FB_VERIFICATION ?? ""
+    }
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

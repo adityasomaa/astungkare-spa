@@ -7,6 +7,7 @@ import { StickyWa } from "@/components/StickyWa";
 import { services, getService } from "@/content/services";
 import { priceWithUsd } from "@/lib/pricing";
 import { buildWaUrl } from "@/lib/whatsapp";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -155,6 +156,18 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 description: `${d.minutes} minutes`
               }))
             })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              breadcrumbSchema([
+                { name: "Home", path: "/" },
+                { name: "Treatments", path: "/services" },
+                { name: service.name, path: `/services/${service.slug}` }
+              ])
+            )
           }}
         />
       </main>

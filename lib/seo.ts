@@ -27,6 +27,25 @@ export function pageMetadata({ title, description, path = "/", image = "/opengra
   };
 }
 
+export interface Crumb {
+  name: string;
+  path: string;
+}
+
+export function breadcrumbSchema(crumbs: Crumb[]) {
+  const base = site.url.replace(/\/$/, "");
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      item: `${base}${c.path}`
+    }))
+  };
+}
+
 export const orgSchema = {
   "@context": "https://schema.org",
   "@type": "DaySpa",

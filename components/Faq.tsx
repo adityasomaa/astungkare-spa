@@ -5,32 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { ensureGsap, gsap } from "@/lib/motion";
 import { Reveal } from "@/components/motion/Reveal";
 
-const faqs = [
-  {
-    q: "How quickly can a therapist arrive?",
-    a: "From Canggu, Seminyak, Berawa and central Badung, usually within 30 minutes. Ubud, Jimbaran, and the far south, allow 45–75 minutes. We confirm the precise ETA on WhatsApp when you book."
-  },
-  {
-    q: "Do I need to provide anything?",
-    a: "Nothing at all. We bring the massage bed, fresh linen, oils, towels, and even soft music. You just need a quiet room with a power outlet."
-  },
-  {
-    q: "How do I pay?",
-    a: "No deposit is required. You pay the therapist directly after the treatment — cash (IDR), QRIS, or bank transfer. Tips are appreciated but never expected."
-  },
-  {
-    q: "Is this a sensual service?",
-    a: "No. Astungkare Spa is strictly therapeutic. Our therapists are trained, vetted professionals and have full authority to refuse and leave (with a 50K fee) if anything inappropriate is requested."
-  },
-  {
-    q: "Can I book for 2 or more people?",
-    a: "Yes — couples, families, and small groups are welcome. We bring one therapist per guest so everyone is treated at the same time."
-  },
-  {
-    q: "How late can I book?",
-    a: "We're open 24 hours, 7 days a week. A 3am Balinese after a long flight, an 11pm hot stone after dinner — all fine. WhatsApp is monitored around the clock."
-  }
-];
+import { faqs } from "@/content/faqs";
 
 export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
