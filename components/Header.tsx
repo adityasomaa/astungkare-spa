@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { MobileMenu } from "@/components/MobileMenu";
-import { quickWaUrl } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 
 const nav = [
@@ -52,15 +51,13 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={quickWaUrl("Hi Astungkare Spa — I'd like to ask about a treatment.")}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/book"
             className="hidden sm:inline-flex items-center gap-2 rounded-full bg-gold text-ink px-5 py-2.5 text-sm font-medium hover:bg-[#D6B57A] hover:scale-[1.02] transition"
           >
-            Book via WhatsApp
+            Book now
             <span aria-hidden>→</span>
-          </a>
+          </Link>
           <MobileMenu />
         </div>
       </div>

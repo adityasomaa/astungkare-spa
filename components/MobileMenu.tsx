@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Logo } from "@/components/Logo";
-import { quickWaUrl } from "@/lib/whatsapp";
 import { site } from "@/lib/site";
 
 const nav = [
@@ -79,15 +78,13 @@ export function MobileMenu() {
           </nav>
 
           <div className="px-6 pb-8 pt-4 border-t border-cream/10 space-y-3">
-            <a
-              href={quickWaUrl("Hi Astungkare Spa — I'd like to book a treatment.")}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/book"
               onClick={() => setOpen(false)}
               className="w-full inline-flex items-center justify-center gap-3 rounded-full bg-gold text-ink px-6 py-3.5 text-sm font-medium hover:bg-[#D6B57A] transition"
             >
-              Book via WhatsApp <span aria-hidden>→</span>
-            </a>
+              Book now <span aria-hidden>→</span>
+            </Link>
             <p className="text-center text-[11px] tracking-[0.22em] uppercase text-cream/40">
               {site.whatsappDisplay} · Open 24/7
             </p>

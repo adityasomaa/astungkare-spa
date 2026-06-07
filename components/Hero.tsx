@@ -1,4 +1,4 @@
-import { quickWaUrl } from "@/lib/whatsapp";
+import Link from "next/link";
 import { HeroAnimation } from "@/components/motion/HeroAnimation";
 import { HeroArt } from "@/components/graphics/HeroArt";
 
@@ -42,23 +42,21 @@ export function Hero() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-                <a
+                <Link
                   data-h-cta
-                  href={quickWaUrl("Hi Astungkare Spa — I'd like to book a treatment tonight.")}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/book"
                   className="inline-flex items-center justify-center gap-3 rounded-full bg-gold text-ink px-7 py-4 text-sm font-medium tracking-wide hover:bg-[#D6B57A] hover:scale-[1.02] transition"
                 >
-                  Book in 60 seconds via WhatsApp
+                  Book your treatment
                   <span aria-hidden>→</span>
-                </a>
-                <a
+                </Link>
+                <Link
                   data-h-cta
-                  href="#services"
+                  href="/#services"
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-cream/15 px-6 py-4 text-sm hover:bg-cream/5 transition-colors"
                 >
                   See treatments
-                </a>
+                </Link>
               </div>
 
               <dl className="mt-12 grid grid-cols-3 gap-6 max-w-lg text-xs text-cream/60">

@@ -9,7 +9,6 @@ import { services } from "@/content/services";
 import { AreaArt } from "@/components/graphics/AreaArt";
 import { breadcrumbSchema } from "@/lib/seo";
 import { priceWithUsd } from "@/lib/pricing";
-import { buildWaUrl } from "@/lib/whatsapp";
 
 export async function generateStaticParams() {
   return areas.map((a) => ({ slug: a.slug }));
@@ -54,14 +53,12 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
             </p>
 
             <div className="mt-10 flex flex-wrap gap-3">
-              <a
-                href={buildWaUrl({ location: area.name, therapy: "Balinese Massage", duration: "90 min" })}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={`/book?area=${area.slug}`}
                 className="inline-flex items-center gap-3 rounded-full bg-gold text-ink px-7 py-3.5 text-sm font-medium hover:bg-[#D6B57A] transition"
               >
-                Book in {area.name} via WhatsApp <span aria-hidden>→</span>
-              </a>
+                Book in {area.name} <span aria-hidden>→</span>
+              </Link>
               <Link href="/services" className="inline-flex items-center gap-2 rounded-full border border-cream/15 px-6 py-3.5 text-sm hover:bg-cream/5 transition">
                 See all treatments
               </Link>

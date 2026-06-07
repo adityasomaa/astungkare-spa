@@ -6,7 +6,6 @@ import { Footer } from "@/components/Footer";
 import { StickyWa } from "@/components/StickyWa";
 import { services, getService } from "@/content/services";
 import { priceWithUsd } from "@/lib/pricing";
-import { buildWaUrl } from "@/lib/whatsapp";
 import { breadcrumbSchema } from "@/lib/seo";
 
 export async function generateStaticParams() {
@@ -63,18 +62,12 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 );
               })}
               <li className="pt-2">
-                <a
-                  href={buildWaUrl({
-                    therapy: service.name,
-                    duration: `${service.durations[0].minutes} min`,
-                    totalIdr: service.durations[0].priceIdr
-                  })}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href={`/book?service=${service.slug}`}
                   className="mt-2 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[color:var(--color-wa)] text-[#0a0a0a] font-semibold px-5 py-3.5 hover:brightness-105 transition"
                 >
-                  <span aria-hidden>✦</span> Book {service.name} via WhatsApp
-                </a>
+                  <span aria-hidden>✦</span> Book {service.name}
+                </Link>
               </li>
             </ul>
           </div>
