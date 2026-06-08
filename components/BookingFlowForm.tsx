@@ -92,6 +92,7 @@ export function BookingFlowForm({
   const waUrl = useMemo(
     () =>
       buildWaUrl({
+        name: name.trim(),
         therapy: service.name,
         duration: `${duration.minutes} min`,
         people,
@@ -99,7 +100,7 @@ export function BookingFlowForm({
         location: area.name,
         villaName: villa,
         totalIdr: total,
-        note: note.trim() ? `From ${name}. ${note.trim()}` : `From ${name}.`
+        note: note.trim()
       }),
     [service, duration, people, when, area, villa, name, note, total]
   );
@@ -275,17 +276,40 @@ function DateTimeInput({
   min?: string;
   invalid?: boolean;
 }) {
+  // Open the native picker when the field (anywhere) is clicked or focused,
+  // not just the small calendar icon.
+  const openPicker = (el: HTMLInputElement | null) => {
+    if (!el) return;
+    try {
+      (el as HTMLInputElement & { showPicker?: () => void }).showPicker?.();
+    } catch {
+      /* showPicker unsupported or not user-activated — ignore */
+    }
+  };
+
   return (
     <input
       type="datetime-local"
       value={value}
       min={min}
       onChange={(e) => onChange(e.target.value)}
+      onClick={(e) => openPicker(e.currentTarget)}
+      onFocus={(e) => openPicker(e.currentTarget)}
       data-invalid={invalid ? "true" : undefined}
       style={{ colorScheme: "dark" }}
-      className={`w-full bg-black/20 border rounded-[10px] px-3.5 py-3.5 font-serif text-[15px] text-cream outline-none transition-colors focus:border-gold/60 cursor-pointer [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-60 hover:[&::-webkit-calendar-picker-indicator]:opacity-100 ${
+      className={[
+        "w-full bg-black/20 border rounded-[10px] px-3.5 py-3.5",
+        "font-serif text-[15px] text-cream outline-none transition-colors cursor-pointer",
+        "focus:border-gold/60",
+        "[&::-webkit-calendar-picker-indicator]:cursor-pointer",
+        "[&::-webkit-calendar-picker-indicator]:opacity-70",
+        "[&::-webkit-calendar-picker-indicator]:hover:opacity-100",
+        "[&::-webkit-calendar-picker-indicator]:[filter:invert(78%)_sepia(28%)_saturate(540%)_hue-rotate(2deg)_brightness(92%)]",
+        "[&::-webkit-datetime-edit]:text-cream",
+        "[&::-webkit-datetime-edit-fields-wrapper]:text-cream",
+        "[&:invalid]:text-cream/40",
         invalid ? "border-[#e9a08f]/60" : "border-cream/10 hover:border-cream/25"
-      }`}
+      ].join(" ")}
     />
   );
 }
