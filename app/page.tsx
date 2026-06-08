@@ -1,4 +1,3 @@
-import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { TrustStrip } from "@/components/TrustStrip";
 import { ServicesSection } from "@/components/ServicesSection";
@@ -7,14 +6,14 @@ import { AreasGrid } from "@/components/AreasGrid";
 import { Reviews } from "@/components/Reviews";
 import { Faq } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
-import { StickyWa } from "@/components/StickyWa";
+import { EntryFlow } from "@/components/EntryFlow";
 import { orgSchema } from "@/lib/seo";
 import { faqPageSchema } from "@/content/faqs";
 
 export default function HomePage() {
   return (
     <>
-      <Header />
+      <EntryFlow />
       <main>
         <Hero />
         <TrustStrip />
@@ -25,7 +24,6 @@ export default function HomePage() {
         <Faq />
       </main>
       <Footer />
-      <StickyWa />
 
       {/* Structured data for Google */}
       <script

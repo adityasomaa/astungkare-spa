@@ -3,9 +3,10 @@ import { Fraunces, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
-import { FirstVisitNotice } from "@/components/PolicyModal";
 import { PageLoader } from "@/components/PageLoader";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { Header } from "@/components/Header";
+import { StickyWa } from "@/components/StickyWa";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -64,8 +65,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <PageLoader />
         <SmoothScroll />
+        <Header />
         {children}
-        <FirstVisitNotice />
+        <StickyWa />
         <GoogleAnalytics />
         <Analytics />
         <SpeedInsights />

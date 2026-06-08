@@ -1,11 +1,9 @@
 import Link from "next/link";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export default function NotFound() {
   return (
     <>
-      <Header />
       <main className="bg-cream min-h-[70vh] flex items-center">
         <div className="container-edge text-center">
           <p className="eyebrow mb-4">404</p>

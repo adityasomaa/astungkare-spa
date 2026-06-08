@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { StickyWa } from "@/components/StickyWa";
 import { areas, getArea } from "@/content/areas";
 import { services } from "@/content/services";
 import { AreaArt } from "@/components/graphics/AreaArt";
@@ -33,7 +31,6 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
 
   return (
     <>
-      <Header />
       <main>
         <section className="bg-ink text-cream on-dark pt-36 pb-24 relative overflow-hidden">
           <div aria-hidden className="absolute inset-0 opacity-90" style={{
@@ -41,7 +38,7 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
           }}/>
           <div className="container-edge relative grid lg:grid-cols-[1.4fr_1fr] gap-12 items-center">
            <div>
-            <Link href="/#areas" className="text-xs tracking-[0.22em] uppercase text-cream/45 hover:text-gold transition mb-6 inline-block">
+            <Link href="/areas" className="text-xs tracking-[0.22em] uppercase text-cream/45 hover:text-gold transition mb-6 inline-block">
               ← All areas
             </Link>
             <p className="eyebrow text-gold mb-4">Bali · {area.drive} typical arrival</p>
@@ -129,7 +126,7 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
             __html: JSON.stringify(
               breadcrumbSchema([
                 { name: "Home", path: "/" },
-                { name: "Areas", path: "/#areas" },
+                { name: "Areas", path: "/areas" },
                 { name: area.name, path: `/areas/${area.slug}` }
               ])
             )
@@ -137,7 +134,6 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
         />
       </main>
       <Footer />
-      <StickyWa />
     </>
   );
 }

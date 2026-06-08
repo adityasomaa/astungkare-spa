@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { StickyWa } from "@/components/StickyWa";
 import { services, type Service } from "@/content/services";
 import { priceWithUsd } from "@/lib/pricing";
 
@@ -22,7 +20,6 @@ const categories: Array<{ key: Service["category"]; label: string }> = [
 export default function ServicesIndexPage() {
   return (
     <>
-      <Header />
       <main>
         <section className="bg-ink text-cream on-dark pt-36 pb-20">
           <div className="container-edge">
@@ -79,7 +76,6 @@ export default function ServicesIndexPage() {
         </section>
       </main>
       <Footer />
-      <StickyWa />
     </>
   );
 }

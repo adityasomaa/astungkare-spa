@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { StickyWa } from "@/components/StickyWa";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -28,7 +26,6 @@ const pillars = [
 export default function AboutPage() {
   return (
     <>
-      <Header />
       <main>
         <section className="bg-cream pt-40 pb-16">
           <div className="container-edge max-w-4xl">
@@ -83,7 +80,6 @@ export default function AboutPage() {
         </section>
       </main>
       <Footer />
-      <StickyWa />
     </>
   );
 }

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { StickyWa } from "@/components/StickyWa";
 
 export const metadata: Metadata = {
   title: "Policies",
@@ -49,7 +47,6 @@ const sections = [
 export default function PoliciesPage() {
   return (
     <>
-      <Header />
       <main>
         <section className="bg-cream pt-40 pb-12">
           <div className="container-edge max-w-3xl">
@@ -79,7 +76,6 @@ export default function PoliciesPage() {
         </section>
       </main>
       <Footer />
-      <StickyWa />
     </>
   );
 }

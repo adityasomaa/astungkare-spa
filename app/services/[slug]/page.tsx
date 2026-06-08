@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { StickyWa } from "@/components/StickyWa";
 import { services, getService } from "@/content/services";
 import { priceWithUsd } from "@/lib/pricing";
 import { breadcrumbSchema } from "@/lib/seo";
@@ -33,7 +31,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <Header />
       <main>
         <section className="bg-ink text-cream on-dark pt-36 pb-24 relative overflow-hidden">
           <div aria-hidden className="absolute inset-0 opacity-90" style={{
@@ -165,7 +162,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         />
       </main>
       <Footer />
-      <StickyWa />
     </>
   );
 }

@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { StickyWa } from "@/components/StickyWa";
 import { BookingFlowForm } from "@/components/BookingFlowForm";
 
 export const metadata: Metadata = {
@@ -15,7 +13,6 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <Header />
       <main className="bg-emerald-deep on-dark text-cream min-h-screen">
         {/* atmospheric backdrop */}
         <div
@@ -67,7 +64,6 @@ export default function ContactPage() {
         </div>
       </main>
       <Footer />
-      <StickyWa />
     </>
   );
 }

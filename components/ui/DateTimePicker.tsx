@@ -52,10 +52,13 @@ export function DateTimePicker({ value, onChange, min, invalid, placeholder = "S
   const parsed = parse(value);
   const now = new Date();
 
+  // Time runs in 30-minute steps.
+  const snap30 = (m: number) => (m >= 45 ? 0 : m >= 15 ? 30 : 0);
+
   const [viewY, setViewY] = useState(parsed?.y ?? now.getFullYear());
   const [viewM, setViewM] = useState(parsed?.m ?? now.getMonth());
   const [hour, setHour] = useState(parsed?.h ?? now.getHours());
-  const [minute, setMinute] = useState(parsed?.min ?? 0);
+  const [minute, setMinute] = useState(parsed ? snap30(parsed.min) : 0);
   const [selDay, setSelDay] = useState<{ y: number; m: number; d: number } | null>(
     parsed ? { y: parsed.y, m: parsed.m, d: parsed.d } : null
   );
@@ -194,10 +197,10 @@ export function DateTimePicker({ value, onChange, min, invalid, placeholder = "S
               </div>
             </div>
 
-            {/* Time columns */}
+            {/* Time columns — minutes in 30-min steps */}
             <div className="flex gap-1 border-l border-cream/10 pl-3">
               <TimeColumn label="Hr" values={range(24)} selected={hour} onPick={pickHour} />
-              <TimeColumn label="Min" values={range(60)} selected={minute} onPick={pickMinute} />
+              <TimeColumn label="Min" values={[0, 30]} selected={minute} onPick={pickMinute} />
             </div>
           </div>
 
@@ -214,9 +217,10 @@ export function DateTimePicker({ value, onChange, min, invalid, placeholder = "S
                 type="button"
                 onClick={() => {
                   const day = { y: now.getFullYear(), m: now.getMonth(), d: now.getDate() };
+                  const mi = snap30(now.getMinutes());
                   setSelDay(day); setViewY(day.y); setViewM(day.m);
-                  setHour(now.getHours()); setMinute(now.getMinutes());
-                  emit(day, now.getHours(), now.getMinutes());
+                  setHour(now.getHours()); setMinute(mi);
+                  emit(day, now.getHours(), mi);
                 }}
                 className="text-[12px] text-gold hover:brightness-110 tracking-wide cursor-pointer"
               >

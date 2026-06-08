@@ -66,25 +66,27 @@ export function Header() {
                     treatmentsOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"
                   )}
                 >
-                  <div className="w-[640px] rounded-2xl bg-emerald-deep border border-cream/12 shadow-2xl shadow-black/50 p-6 grid grid-cols-3 gap-x-6 gap-y-5">
-                    {treatmentGroups.map((g) => (
-                      <div key={g.key}>
-                        <p className="text-[10px] tracking-[0.24em] uppercase text-gold/80 mb-2.5">{g.label}</p>
-                        <ul className="space-y-1.5">
-                          {g.items.map((s) => (
-                            <li key={s.slug}>
-                              <Link
-                                href={`/services/${s.slug}`}
-                                className="block text-[13px] text-cream/75 hover:text-gold transition-colors"
-                              >
-                                {s.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                    <div className="col-span-3 pt-4 mt-1 border-t border-cream/10">
+                  <div className="w-[640px] rounded-2xl bg-emerald-deep border border-cream/12 shadow-2xl shadow-black/50 p-6">
+                    <div className="columns-3 gap-6 [column-fill:balance]">
+                      {treatmentGroups.map((g) => (
+                        <div key={g.key} className="break-inside-avoid mb-5">
+                          <p className="text-[10px] tracking-[0.24em] uppercase text-gold/80 mb-2.5">{g.label}</p>
+                          <ul className="space-y-1.5">
+                            {g.items.map((s) => (
+                              <li key={s.slug}>
+                                <Link
+                                  href={`/services/${s.slug}`}
+                                  className="block text-[13px] text-cream/75 hover:text-gold transition-colors"
+                                >
+                                  {s.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="pt-4 mt-1 border-t border-cream/10">
                       <Link href="/services" className="inline-flex items-center gap-2 text-[13px] text-cream hover:text-gold transition-colors">
                         View all treatments <span aria-hidden>→</span>
                       </Link>
