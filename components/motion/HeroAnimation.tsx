@@ -8,7 +8,7 @@ interface Props {
   children: ReactNode;
 }
 
-/** Orchestrated hero entrance — eyebrow → headline → sub → CTAs → meta → visual. */
+/** Orchestrated hero entrance, eyebrow → headline → sub → CTAs → meta → visual. */
 export function HeroAnimation({ children }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -31,11 +31,6 @@ export function HeroAnimation({ children }: Props) {
           ctx.querySelector("[data-h-visual]"),
           { y: 40, opacity: 0, scale: 0.96, duration: 1.2 },
           0.4
-        )
-        .from(
-          ctx.querySelector("[data-h-chip]"),
-          { y: -10, opacity: 0, duration: 0.6 },
-          1.2
         )
         .from(
           ctx.querySelectorAll("[data-h-petal]"),

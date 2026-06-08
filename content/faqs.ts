@@ -14,7 +14,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "How do I pay?",
-    a: "No deposit is required. You pay the therapist directly after the treatment — cash (IDR), QRIS, or bank transfer. Tips are appreciated but never expected."
+    a: "No deposit is required. You pay the therapist directly after the treatment, cash (IDR), QRIS, or bank transfer. Tips are appreciated but never expected."
   },
   {
     q: "Is this a sensual service?",
@@ -22,11 +22,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "Can I book for 2 or more people?",
-    a: "Yes — couples, families, and small groups are welcome. We bring one therapist per guest so everyone is treated at the same time."
+    a: "Yes, couples, families, and small groups are welcome. We bring one therapist per guest so everyone is treated at the same time."
   },
   {
     q: "How late can I book?",
-    a: "We're open 24 hours, 7 days a week. A 3am Balinese after a long flight, an 11pm hot stone after dinner — all fine. WhatsApp is monitored around the clock."
+    a: "We're open 24 hours, 7 days a week. A 3am Balinese after a long flight, an 11pm hot stone after dinner, all fine. WhatsApp is monitored around the clock."
   }
 ];
 

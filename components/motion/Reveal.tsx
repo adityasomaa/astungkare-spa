@@ -51,7 +51,7 @@ export function Reveal({
   );
 
   return (
-    // @ts-expect-error — dynamic tag with ref
+    // @ts-expect-error, dynamic tag with ref
     <Tag ref={ref} className={className}>
       {children}
     </Tag>

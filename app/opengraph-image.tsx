@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Astungkare Spa — Wellness Brought to You";
+export const alt = "Astungkare Spa, Wellness Brought to You";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -72,7 +72,7 @@ export default function OpenGraphImage() {
           <span style={{ display: "flex" }}>5.0 / 5 · 24/7 · WHATSAPP BOOKING</span>
         </div>
 
-        {/* lotus mark — pure SVG, no fonts */}
+        {/* lotus mark, pure SVG, no fonts */}
         <div
           style={{
             position: "absolute",

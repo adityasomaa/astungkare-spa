@@ -8,7 +8,7 @@ import { priceWithUsd } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "Treatments",
-  description: "Twenty treatments — massage, face, scrub, nails, and waxing — delivered to your villa across Bali."
+  description: "Twenty treatments, massage, face, scrub, nails, and waxing, delivered to your villa across Bali."
 };
 
 const categories: Array<{ key: Service["category"]; label: string }> = [

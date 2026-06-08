@@ -1,20 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 /**
- * Branded lotus loader.
- * - Shows on first paint, fades out once hydrated.
- * - Flashes a quick veil on client-side route changes.
+ * Branded lotus loader on first paint only.
+ * Route-change transitions are handled by app/template.tsx (fade + slide),
+ * so the new page animates in instead of being hidden behind a veil.
  */
 export function PageLoader() {
   const [visible, setVisible] = useState(true);
   const [intro, setIntro] = useState(true);
-  const pathname = usePathname();
-  const first = useRef(true);
 
-  // initial mount → fade out
   useEffect(() => {
     const t = setTimeout(() => setVisible(false), 900);
     const t2 = setTimeout(() => setIntro(false), 1700);
@@ -23,17 +19,6 @@ export function PageLoader() {
       clearTimeout(t2);
     };
   }, []);
-
-  // route change → quick veil (skip the very first render)
-  useEffect(() => {
-    if (first.current) {
-      first.current = false;
-      return;
-    }
-    setVisible(true);
-    const t = setTimeout(() => setVisible(false), 650);
-    return () => clearTimeout(t);
-  }, [pathname]);
 
   if (!intro && !visible) return null;
 

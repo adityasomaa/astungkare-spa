@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { policies, type Policy } from "@/content/policies";
+import { setPageScroll } from "@/lib/scroll-lock";
 
 interface Props {
   children: ReactNode;
@@ -12,7 +13,7 @@ interface Props {
 export function PolicyModalTrigger({ children, policy }: Props) {
   const data = policies[policy];
   return (
-    <Dialog.Root>
+    <Dialog.Root onOpenChange={(open) => setPageScroll(!open)}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-ink/60 backdrop-blur-sm data-[state=open]:animate-fade-in" />
@@ -90,7 +91,7 @@ export function FirstVisitNotice() {
       <p className="text-[10px] tracking-[0.28em] uppercase text-gold mb-2">Before you book</p>
       <p className="text-sm text-cream/85 leading-relaxed">
         Our services are{" "}
-        <PolicyLink policy="conduct">strictly therapeutic</PolicyLink>. Late cancellations carry a small fee — see our{" "}
+        <PolicyLink policy="conduct">strictly therapeutic</PolicyLink>. Late cancellations carry a small fee, see our{" "}
         <PolicyLink policy="cancellation">cancellation policy</PolicyLink>.
       </p>
       <button

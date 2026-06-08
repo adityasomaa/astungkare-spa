@@ -2,6 +2,7 @@
 
 import * as RSelect from "@radix-ui/react-select";
 import { cn } from "@/lib/utils";
+import { setPageScroll } from "@/lib/scroll-lock";
 
 export interface SelectOption {
   value: string;
@@ -16,10 +17,14 @@ interface SelectProps {
   ariaLabel?: string;
 }
 
-/** Fully-styled, animated dropdown — replaces native <select>. Dark-theme tuned. */
+/** Fully-styled, animated dropdown, replaces native <select>. Dark-theme tuned. */
 export function Select({ value, onValueChange, options, placeholder, ariaLabel }: SelectProps) {
   return (
-    <RSelect.Root value={value} onValueChange={onValueChange}>
+    <RSelect.Root
+      value={value}
+      onValueChange={onValueChange}
+      onOpenChange={(open) => setPageScroll(!open)}
+    >
       <RSelect.Trigger
         aria-label={ariaLabel}
         className={cn(

@@ -16,15 +16,30 @@ interface BookingFlowFormProps {
   autoLaunchWa?: boolean;
 }
 
-const PEOPLE_OPTIONS = [1, 2, 3, 4].map((n) => ({
-  value: String(n),
-  label: `${n} ${n === 1 ? "person" : "people"}`
-}));
+/** Local datetime "now" in the format datetime-local expects (YYYY-MM-DDTHH:MM). */
+function localNow(): string {
+  const d = new Date();
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+  return d.toISOString().slice(0, 16);
+}
+
+/** Pretty-print a datetime-local value for the WhatsApp message. */
+function prettyWhen(v: string): string {
+  if (!v) return "";
+  const d = new Date(v);
+  if (Number.isNaN(d.getTime())) return v;
+  return d.toLocaleString("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
 
 export function BookingFlowForm({
   defaultServiceSlug,
   defaultAreaSlug,
-  variant = "inline",
   autoLaunchWa = true
 }: BookingFlowFormProps) {
   const params = useSearchParams();
@@ -47,6 +62,9 @@ export function BookingFlowForm({
   const [people, setPeople] = useState(1);
   const [note, setNote] = useState("");
   const [touched, setTouched] = useState(false);
+  const [minDateTime, setMinDateTime] = useState("");
+
+  useEffect(() => setMinDateTime(localNow()), []);
 
   useEffect(() => {
     const s = params.get("service");
@@ -63,12 +81,11 @@ export function BookingFlowForm({
   const area = areas.find((a) => a.slug === areaSlug)!;
   const total = duration.priceIdr * people;
 
-  // Every text field is required; selects always have a value.
+  // Required: name, when, villa. Optional: note.
   const errors = {
     name: name.trim().length < 2,
-    when: when.trim().length < 3,
-    villa: villa.trim().length < 2,
-    note: note.trim().length < 2
+    when: when.trim().length < 1,
+    villa: villa.trim().length < 2
   };
   const hasErrors = Object.values(errors).some(Boolean);
 
@@ -78,11 +95,11 @@ export function BookingFlowForm({
         therapy: service.name,
         duration: `${duration.minutes} min`,
         people,
-        when,
+        when: prettyWhen(when),
         location: area.name,
         villaName: villa,
         totalIdr: total,
-        note: `From ${name}. ${note}`
+        note: note.trim() ? `From ${name}. ${note.trim()}` : `From ${name}.`
       }),
     [service, duration, people, when, area, villa, name, note, total]
   );
@@ -91,7 +108,6 @@ export function BookingFlowForm({
     e.preventDefault();
     setTouched(true);
     if (hasErrors) {
-      // focus first invalid field
       const firstInvalid = document.querySelector<HTMLElement>("[data-invalid='true']");
       firstInvalid?.scrollIntoView({ behavior: "smooth", block: "center" });
       firstInvalid?.focus();
@@ -136,16 +152,11 @@ export function BookingFlowForm({
         </Field>
 
         <Field label="People" required>
-          <Select
-            ariaLabel="Number of people"
-            value={String(people)}
-            onValueChange={(v) => setPeople(Number(v))}
-            options={PEOPLE_OPTIONS}
-          />
+          <Counter value={people} onChange={setPeople} min={1} max={6} />
         </Field>
 
-        <Field label="When" required error={touched && errors.when} hint="Date & time you'd like us">
-          <Input value={when} onChange={setWhen} placeholder="e.g. tonight 19:00, or Sat 24 May 5pm" invalid={touched && errors.when} />
+        <Field label="When" required error={touched && errors.when} hint="Choose your date & time" className="sm:col-span-2">
+          <DateTimeInput value={when} onChange={setWhen} min={minDateTime} invalid={touched && errors.when} />
         </Field>
 
         <Field label="Area" required>
@@ -157,12 +168,12 @@ export function BookingFlowForm({
           />
         </Field>
 
-        <Field label="Villa / Hotel name" required error={touched && errors.villa} className="sm:col-span-2">
-          <Input value={villa} onChange={setVilla} placeholder="e.g. Villa Asri, Berawa — full name so we can find you" invalid={touched && errors.villa} />
+        <Field label="Villa / Hotel name" required error={touched && errors.villa}>
+          <Input value={villa} onChange={setVilla} placeholder="e.g. Villa Asri, Berawa" invalid={touched && errors.villa} />
         </Field>
 
-        <Field label="Note for the therapist" required error={touched && errors.note} hint="Pressure preference, allergies, parking, gate code…" className="sm:col-span-2">
-          <Input value={note} onChange={setNote} placeholder="e.g. medium pressure, gate code 1234, please call on arrival" invalid={touched && errors.note} />
+        <Field label="Note for the therapist" hint="Optional · pressure, allergies, gate code…" className="sm:col-span-2">
+          <Input value={note} onChange={setNote} placeholder="e.g. medium pressure, gate code 1234, please call on arrival" />
         </Field>
       </div>
 
@@ -173,7 +184,7 @@ export function BookingFlowForm({
 
       {touched && hasErrors && (
         <p className="mt-4 text-[12px] text-[#e9a08f] text-center tracking-wide animate-fade-up">
-          Please complete every field — it makes your WhatsApp booking clear and fast to confirm.
+          Please complete the required fields so your WhatsApp booking is clear and fast to confirm.
         </p>
       )}
 
@@ -214,7 +225,7 @@ function Field({
   className?: string;
 }) {
   return (
-    <label className={`block ${className ?? ""}`}>
+    <div className={`block ${className ?? ""}`}>
       <span className="flex items-center gap-1.5 text-[10px] tracking-[0.22em] uppercase text-cream/50 mb-1.5">
         {label}
         {required && <span className="text-gold/70" aria-hidden>*</span>}
@@ -222,7 +233,7 @@ function Field({
       {children}
       {hint && !error && <span className="block mt-1 text-[10px] text-cream/35 tracking-wide normal-case">{hint}</span>}
       {error && <span className="block mt-1 text-[10px] text-[#e9a08f] tracking-wide normal-case">Required</span>}
-    </label>
+    </div>
   );
 }
 
@@ -250,5 +261,75 @@ function Input({
         invalid ? "border-[#e9a08f]/60" : "border-cream/10 hover:border-cream/25"
       }`}
     />
+  );
+}
+
+function DateTimeInput({
+  value,
+  onChange,
+  min,
+  invalid
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  min?: string;
+  invalid?: boolean;
+}) {
+  return (
+    <input
+      type="datetime-local"
+      value={value}
+      min={min}
+      onChange={(e) => onChange(e.target.value)}
+      data-invalid={invalid ? "true" : undefined}
+      style={{ colorScheme: "dark" }}
+      className={`w-full bg-black/20 border rounded-[10px] px-3.5 py-3.5 font-serif text-[15px] text-cream outline-none transition-colors focus:border-gold/60 cursor-pointer [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-60 hover:[&::-webkit-calendar-picker-indicator]:opacity-100 ${
+        invalid ? "border-[#e9a08f]/60" : "border-cream/10 hover:border-cream/25"
+      }`}
+    />
+  );
+}
+
+function Counter({
+  value,
+  onChange,
+  min = 1,
+  max = 6
+}: {
+  value: number;
+  onChange: (v: number) => void;
+  min?: number;
+  max?: number;
+}) {
+  const dec = () => onChange(Math.max(min, value - 1));
+  const inc = () => onChange(Math.min(max, value + 1));
+  return (
+    <div className="flex items-center justify-between bg-black/20 border border-cream/10 rounded-[10px] px-2 py-1.5">
+      <button
+        type="button"
+        onClick={dec}
+        disabled={value <= min}
+        aria-label="Fewer people"
+        className="w-9 h-9 inline-flex items-center justify-center rounded-lg text-cream/80 hover:bg-gold/15 hover:text-gold disabled:opacity-25 disabled:hover:bg-transparent transition cursor-pointer disabled:cursor-not-allowed"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path d="M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </button>
+      <span className="font-serif text-[15px] text-cream tabular-nums select-none">
+        {value} <span className="text-cream/45 text-[13px]">{value === 1 ? "person" : "people"}</span>
+      </span>
+      <button
+        type="button"
+        onClick={inc}
+        disabled={value >= max}
+        aria-label="More people"
+        className="w-9 h-9 inline-flex items-center justify-center rounded-lg text-cream/80 hover:bg-gold/15 hover:text-gold disabled:opacity-25 disabled:hover:bg-transparent transition cursor-pointer disabled:cursor-not-allowed"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </button>
+    </div>
   );
 }

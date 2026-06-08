@@ -11,7 +11,7 @@ export const areas: Area[] = [
   {
     slug: "canggu",
     name: "Canggu",
-    blurb: "Our home base. Therapists already in the area — fastest arrival.",
+    blurb: "Our home base. Therapists already in the area, fastest arrival.",
     drive: "0–15 min",
     highlighted: true
   },
@@ -62,7 +62,7 @@ export const areas: Area[] = [
   {
     slug: "badung",
     name: "Badung",
-    blurb: "Greater Badung — Kerobokan, Umalas, Berawa, Pererenan.",
+    blurb: "Greater Badung, Kerobokan, Umalas, Berawa, Pererenan.",
     drive: "0–20 min",
     highlighted: true
   }

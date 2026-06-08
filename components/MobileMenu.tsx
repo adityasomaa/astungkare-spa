@@ -5,6 +5,7 @@ import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Logo } from "@/components/Logo";
 import { site } from "@/lib/site";
+import { setPageScroll } from "@/lib/scroll-lock";
 
 const nav = [
   { href: "/#services", label: "Treatments", hint: "20 rituals" },
@@ -18,7 +19,13 @@ export function MobileMenu() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root
+      open={open}
+      onOpenChange={(o) => {
+        setOpen(o);
+        setPageScroll(!o);
+      }}
+    >
       <Dialog.Trigger asChild>
         <button
           type="button"

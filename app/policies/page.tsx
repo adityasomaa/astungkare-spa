@@ -12,7 +12,7 @@ const sections = [
   {
     title: "Booking & Confirmation",
     body: [
-      "All bookings are confirmed via WhatsApp. Once you submit the form, a therapist coordinator replies — typically within five minutes — with the precise ETA and the therapist's name.",
+      "All bookings are confirmed via WhatsApp. Once you submit the form, a therapist coordinator replies, typically within five minutes, with the precise ETA and the therapist's name.",
       "No deposit is required. You pay the therapist directly after the treatment, in IDR cash, QRIS, or local bank transfer."
     ]
   },
@@ -20,7 +20,7 @@ const sections = [
     title: "Cancellation",
     body: [
       "Cancel free of charge up to one hour before the scheduled arrival.",
-      "Late cancellations — within one hour of arrival, or if the therapist is already en route — incur a flat fee of IDR 50,000.",
+      "Late cancellations, within one hour of arrival, or if the therapist is already en route, incur a flat fee of IDR 50,000.",
       "No-shows are charged the equivalent of one 60-minute Balinese massage (IDR 250,000)."
     ]
   },
@@ -28,7 +28,7 @@ const sections = [
     title: "Professional Conduct",
     body: [
       "Astungkare Spa provides strictly therapeutic treatments. Our therapists are trained professionals, and our service is bound by the standards of a hotel spa.",
-      "Any request that compromises that standard — sexual, inappropriate, discriminatory, or otherwise outside the therapeutic scope — is refused. In such cases the therapist may leave immediately. A IDR 50,000 fee applies and the booking is not refunded."
+      "Any request that compromises that standard, sexual, inappropriate, discriminatory, or otherwise outside the therapeutic scope, is refused. In such cases the therapist may leave immediately. A IDR 50,000 fee applies and the booking is not refunded."
     ]
   },
   {
@@ -41,7 +41,7 @@ const sections = [
   {
     title: "Privacy",
     body: [
-      "We collect only the information needed to deliver your booking — your name, phone number, and address. We never share, sell, or pass this on to third parties. Booking history is retained for one year for service quality, then deleted."
+      "We collect only the information needed to deliver your booking, your name, phone number, and address. We never share, sell, or pass this on to third parties. Booking history is retained for one year for service quality, then deleted."
     ]
   }
 ];

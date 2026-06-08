@@ -86,13 +86,6 @@ export function Hero() {
               >
                 <HeroArt />
               </div>
-              <div
-                data-h-chip
-                className="absolute -top-3 -left-3 bg-cream text-ink rounded-full px-4 py-2 text-[11px] tracking-wider shadow-lg shadow-black/30"
-              >
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald mr-2 align-middle animate-pulse" />
-                Earliest tonight · 18:30
-              </div>
             </div>
           </div>
         </div>

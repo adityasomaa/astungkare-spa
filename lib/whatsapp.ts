@@ -13,7 +13,7 @@ export interface BookingPayload {
 }
 
 export function buildWaMessage(p: BookingPayload = {}): string {
-  const lines: string[] = ["Hi Astungkare Spa — I'd like to book a treatment."];
+  const lines: string[] = ["Hi Astungkare Spa, I'd like to book a treatment."];
   if (p.therapy) lines.push(`Therapy: ${p.therapy}${p.duration ? ` · ${p.duration}` : ""}`);
   if (p.people && p.people > 1) lines.push(`People: ${p.people}`);
   if (p.when) lines.push(`When: ${p.when}`);

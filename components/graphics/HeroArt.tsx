@@ -1,5 +1,5 @@
 /**
- * Hero illustration — large lotus + radiating rings, organic.
+ * Hero illustration, large lotus + radiating rings, organic.
  * Pure SVG, brand-coloured, animated by HeroAnimation via [data-h-petal].
  */
 export function HeroArt() {
@@ -41,7 +41,7 @@ export function HeroArt() {
       {/* horizon line */}
       <line x1="40" y1="330" x2="440" y2="330" stroke="#C9A567" strokeWidth="0.5" opacity="0.35" strokeDasharray="2 6" />
 
-      {/* lotus — 5 petals stroked, light-on-dark */}
+      {/* lotus, 5 petals stroked, light-on-dark */}
       <g
         transform="translate(240 330) scale(2.6) translate(-50 -50)"
         stroke="url(#hero-petal)"
@@ -57,7 +57,7 @@ export function HeroArt() {
         <path data-h-petal opacity="0.5" d="M50 50 C 78 32, 94 38, 96 64 C 72 70, 58 62, 50 56 Z" />
       </g>
 
-      {/* small ornament petals — floating */}
+      {/* small ornament petals, floating */}
       <g fill="url(#hero-petal-soft)" opacity="0.7">
         <path d="M390 130 C 397 125, 405 132, 402 142 C 396 145, 390 142, 388 138 Z" />
         <path d="M70 470 C 78 466, 86 472, 84 481 C 78 485, 71 482, 69 478 Z" />
@@ -66,7 +66,7 @@ export function HeroArt() {
 
       {/* base script label */}
       <text x="240" y="555" textAnchor="middle" fill="#C9A567" opacity="0.55" fontFamily="ui-serif, Georgia, serif" fontStyle="italic" fontSize="13" letterSpacing="6">
-        — astungkara —
+        astungkara
       </text>
       <text x="240" y="575" textAnchor="middle" fill="#F4EFE7" opacity="0.35" fontFamily="ui-sans-serif, system-ui" fontSize="9" letterSpacing="4">
         IN HOPE THAT IT UNFOLDS

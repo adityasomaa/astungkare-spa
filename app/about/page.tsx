@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyWa } from "@/components/StickyWa";
@@ -6,8 +7,23 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `The story behind ${site.name}, a Bali mobile spa founded by ${site.founder}.`
+  description: `${site.name} is a premium mobile spa serving villas, hotels and homes across Bali, 24 hours a day.`
 };
+
+const pillars = [
+  {
+    title: "Trained & vetted",
+    body: "Every therapist is professionally trained and held to the standard of a fine hotel spa. Strictly therapeutic, always."
+  },
+  {
+    title: "We bring everything",
+    body: "Foldable bed, fresh linen, premium organic oils, soft music. You only need a quiet room and a power outlet."
+  },
+  {
+    title: "Open 24 hours",
+    body: "A 3am treatment after a long flight, an 11pm hot stone after dinner. Every hour of every day, all across Bali."
+  }
+];
 
 export default function AboutPage() {
   return (
@@ -24,39 +40,45 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="bg-cream pb-24">
-          <div className="container-edge grid lg:grid-cols-[1fr_1.3fr] gap-16 max-w-6xl">
-            <div className="lg:sticky lg:top-32 h-fit">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden" style={{
-                background: "linear-gradient(135deg, #c9a567 0%, #8a7146 70%)"
-              }}>
-                <div className="w-full h-full flex items-end p-6">
-                  <p className="text-cream/80 text-xs tracking-[0.22em] uppercase">Sriati · Founder</p>
-                </div>
-              </div>
-            </div>
+        <section className="bg-cream pb-20">
+          <div className="container-edge max-w-3xl space-y-8 font-serif font-light text-xl text-ink/85 leading-relaxed">
+            <p>
+              Astungkare Spa is a premium mobile spa. Instead of asking guests to travel, we bring the
+              treatment to them, to villa terraces, hotel suites, and balconies overlooking the rice fields.
+            </p>
+            <p>
+              Massage in Bali isn&rsquo;t a luxury. It&rsquo;s a daily, quiet kindness, passed down through
+              generations. We took that tradition, trained it to the standard of the finest hotel spa, and made
+              it available wherever you already feel most at home.
+            </p>
+            <p>
+              A team of trained therapists serves Canggu, Seminyak, Ubud and across the south, at every hour of
+              every day. Every therapist is vetted and held to a strictly therapeutic standard.
+            </p>
+            <p>
+              <em>Astungkara</em>, in Balinese, is the word said in hope that something good unfolds, spoken over
+              offerings at dawn and over rituals at dusk. It is, quietly, what we wish for every guest.
+            </p>
+          </div>
+        </section>
 
-            <div className="space-y-8 font-serif font-light text-xl text-ink/85 leading-relaxed">
-              <p>
-                <span className="float-left text-7xl leading-none mr-3 font-serif font-light text-gold-deep mt-1">S</span>
-                riati grew up watching her mother and aunties trade the small currency of touch — a shoulder pressed, a foot held — at the end of long days in the rice fields. Massage in Bali isn&rsquo;t a luxury. It&rsquo;s a daily, quiet kindness.
-              </p>
-              <p>
-                Astungkare Spa was founded on a simple idea: take that kindness, train it to the standard of the finest hotel spa, and bring it to the rooms where guests already feel most at home. A villa terrace. A hotel suite. A balcony overlooking rice.
-              </p>
-              <p>
-                Twelve trained therapists. One phone call. Every hour of every day.
-              </p>
-              <p>
-                Today, a team of trained therapists serves Canggu, Seminyak, Ubud and across the south — at every hour of every day. Every therapist is vetted, trained personally by Sriati, and held to a strictly therapeutic standard.
-              </p>
-              <p>
-                <em>Astungkara</em>, in Balinese, is the word said in hope that something good unfolds. The word said over offerings at dawn and over rituals at dusk. We chose it because it is, quietly, what we wish for every guest:
-              </p>
-              <p className="text-2xl text-emerald not-italic" style={{ fontStyle: "italic" }}>
-                — that this is the hour your trip turns.
-              </p>
-            </div>
+        <section className="bg-cream pb-24">
+          <div className="container-edge max-w-5xl grid md:grid-cols-3 gap-3">
+            {pillars.map((p) => (
+              <div key={p.title} className="rounded-2xl p-7 bg-[color:var(--color-cream-50)] border border-[color:var(--color-line)]">
+                <h2 className="font-serif text-2xl font-light text-ink">{p.title}</h2>
+                <p className="text-sm text-ink/60 mt-3 leading-relaxed">{p.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="container-edge max-w-5xl mt-12 text-center">
+            <Link
+              href="/book"
+              className="inline-flex items-center gap-3 rounded-full bg-ink text-cream px-7 py-4 text-sm font-medium hover:bg-emerald transition"
+            >
+              Book your treatment <span aria-hidden>→</span>
+            </Link>
           </div>
         </section>
       </main>

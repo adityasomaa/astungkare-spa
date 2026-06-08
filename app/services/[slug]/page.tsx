@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const s = getService(slug);
   if (!s) return {};
   return {
-    title: `${s.name} in Bali — at your villa`,
+    title: `${s.name} in Bali, at your villa`,
     description: `${s.short}. ${s.description.slice(0, 150)}`
   };
 }

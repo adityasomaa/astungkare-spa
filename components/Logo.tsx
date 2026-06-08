@@ -13,7 +13,7 @@ interface LogoProps {
  * Astungkare Spa logo.
  * - "horizontal": full PNG lotus + ASTUNGKARE SPA wordmark (use in header / footer)
  * - "mark": SVG lotus only (favicons, small spaces, hover states)
- * - "wordmark": text only (rare — fallback)
+ * - "wordmark": text only (rare, fallback)
  */
 export function Logo({ variant = "horizontal", size = 40, color = "gold", className, priority = false }: LogoProps) {
   if (variant === "horizontal") {
@@ -54,7 +54,7 @@ export function Logo({ variant = "horizontal", size = 40, color = "gold", classN
     );
   }
 
-  // mark — five-petal lotus SVG (for tiny spots, icons, ornament)
+  // mark, five-petal lotus SVG (for tiny spots, icons, ornament)
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" fill="none" className={className} aria-label="Astungkare Spa">
       <g stroke={stroke} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none">

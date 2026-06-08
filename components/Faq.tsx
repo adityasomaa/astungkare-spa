@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useId } from "react";
+import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import { ensureGsap, gsap } from "@/lib/motion";
 import { Reveal } from "@/components/motion/Reveal";
@@ -20,13 +21,13 @@ export function Faq() {
             <em>no fluff.</em>
           </h2>
           <p className="text-ink/60 mt-6 max-w-sm leading-relaxed text-sm">
-            Anything else?{" "}
-            <a
-              href="https://wa.me/6289528800011"
+            Ready when you are.{" "}
+            <Link
+              href="/book"
               className="underline underline-offset-4 decoration-gold/60 hover:text-emerald transition-colors"
             >
-              Message us on WhatsApp
-            </a>
+              Start your booking
+            </Link>
             .
           </p>
         </div>

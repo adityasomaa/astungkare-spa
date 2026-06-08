@@ -22,7 +22,7 @@ export function ServicesSection() {
             </h2>
           </div>
           <p className="text-ink/65 text-base md:text-lg leading-relaxed max-w-xl lg:justify-self-end">
-            Twenty treatments, twelve trained therapists, one phone call. Prices in IDR with a USD reference — final amount confirmed on WhatsApp.
+            Twenty treatments, twelve trained therapists, one phone call. Prices in IDR with a USD reference, final amount confirmed on WhatsApp.
           </p>
         </Reveal>
 

@@ -56,7 +56,7 @@ export const services: Service[] = [
       { minutes: 90, priceIdr: 600_000 }
     ],
     description:
-      "Light rhythmic strokes that follow the body's lymph pathways — ideal after travel, late nights, or long flights. Reduces puffiness and supports recovery.",
+      "Light rhythmic strokes that follow the body's lymph pathways, ideal after travel, late nights, or long flights. Reduces puffiness and supports recovery.",
     benefits: ["Reduces fluid retention", "Supports detoxification", "Visibly de-puffs"],
     featured: true
   },
@@ -70,7 +70,7 @@ export const services: Service[] = [
       { minutes: 90, priceIdr: 500_000 }
     ],
     description:
-      "Slow, sustained pressure into the deeper layers of muscle and fascia — targeted relief for surf shoulders, runner legs, and laptop necks.",
+      "Slow, sustained pressure into the deeper layers of muscle and fascia, targeted relief for surf shoulders, runner legs, and laptop necks.",
     benefits: ["Releases chronic knots", "Restores mobility", "Targets specific pain"]
   },
   {
@@ -149,7 +149,7 @@ export const services: Service[] = [
     category: "scrub",
     durations: [{ minutes: 60, priceIdr: 250_000 }],
     description:
-      "An exfoliating scrub, warm soak, and finishing massage focused entirely on the feet — ideal after long days of beach and exploration.",
+      "An exfoliating scrub, warm soak, and finishing massage focused entirely on the feet, ideal after long days of beach and exploration.",
     benefits: ["Softens skin", "Eases fatigue", "Wonderful before bed"]
   },
   {
@@ -179,7 +179,7 @@ export const services: Service[] = [
     category: "face",
     durations: [{ minutes: 60, priceIdr: 250_000 }],
     description:
-      "A nourishing scalp and hair treatment with a warm cream mask, scalp massage, and steam. Profoundly relaxing — and excellent for hair health.",
+      "A nourishing scalp and hair treatment with a warm cream mask, scalp massage, and steam. Profoundly relaxing, and excellent for hair health.",
     benefits: ["Nourishes scalp", "Relieves headaches", "Deeply calming"]
   },
   {
@@ -224,7 +224,7 @@ export const services: Service[] = [
     short: "From knee down (or up)",
     category: "waxing",
     durations: [{ minutes: 30, priceIdr: 400_000 }],
-    description: "Professional half-leg waxing — pick upper or lower.",
+    description: "Professional half-leg waxing, pick upper or lower.",
     benefits: ["Lasting smoothness", "Hygienic", "Done in-villa"]
   },
   {

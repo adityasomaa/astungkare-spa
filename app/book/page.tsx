@@ -8,7 +8,7 @@ import { BookingFlowForm } from "@/components/BookingFlowForm";
 
 export const metadata: Metadata = {
   title: "Book your treatment",
-  description: "Pick a treatment, when and where. We build the message — you confirm in WhatsApp.",
+  description: "Pick a treatment, when and where. We build the message, you confirm in WhatsApp.",
   alternates: { canonical: "https://astungkarespa.com/book" }
 };
 
@@ -41,13 +41,13 @@ export default function BookPage() {
                 Tell us the details<br /><em>once.</em>
               </h1>
               <p className="text-cream/70 max-w-md leading-relaxed text-lg">
-                Pick a treatment, when, and where. We build a complete WhatsApp message — you hit send.
+                Pick a treatment, when, and where. We build a complete WhatsApp message, you hit send.
                 A therapist replies within five minutes.
               </p>
 
               <ul className="mt-10 space-y-4 text-sm text-cream/65 max-w-md">
                 <li className="flex gap-3"><span className="text-gold mt-0.5">✦</span> <span><b className="text-cream font-medium">No deposit.</b> Pay therapist directly · cash, QRIS, or bank transfer.</span></li>
-                <li className="flex gap-3"><span className="text-gold mt-0.5">✦</span> <span><b className="text-cream font-medium">Open 24 hours.</b> A 3am Balinese, an 11pm hot stone — all fine.</span></li>
+                <li className="flex gap-3"><span className="text-gold mt-0.5">✦</span> <span><b className="text-cream font-medium">Open 24 hours.</b> A 3am Balinese, an 11pm hot stone, all fine.</span></li>
                 <li className="flex gap-3"><span className="text-gold mt-0.5">✦</span> <span><b className="text-cream font-medium">Cancel up to 1 hour before.</b> IDR 50K otherwise.</span></li>
                 <li className="flex gap-3"><span className="text-gold mt-0.5">✦</span> <span><b className="text-cream font-medium">We bring everything.</b> Bed, linen, oils, soft music.</span></li>
               </ul>
@@ -55,10 +55,7 @@ export default function BookPage() {
               <div className="mt-10 pt-8 border-t border-cream/10">
                 <p className="text-[10px] tracking-[0.28em] uppercase text-cream/45 mb-2">Need help choosing?</p>
                 <p className="text-cream/70 text-sm">
-                  Browse <Link href="/services" className="underline underline-offset-4 decoration-gold/60 hover:text-gold transition">all 20 treatments</Link> first — or skip the form and message us directly at{" "}
-                  <a href="https://wa.me/6289528800011?text=Hi%20Astungkare%20Spa%20%E2%80%94%20I%20have%20a%20question%20before%20booking." target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-gold/60 hover:text-gold transition">
-                    +62 895-2880-0011
-                  </a>.
+                  Browse <Link href="/services" className="underline underline-offset-4 decoration-gold/60 hover:text-gold transition">all 20 treatments</Link> first, then come back and complete the form. We&rsquo;ll have everything we need to confirm fast.
                 </p>
               </div>
             </div>
