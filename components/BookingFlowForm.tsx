@@ -8,6 +8,7 @@ import { buildWaUrl } from "@/lib/whatsapp";
 import { formatIdr } from "@/lib/pricing";
 import { PolicyLink } from "@/components/PolicyModal";
 import { Select } from "@/components/ui/Select";
+import { DateTimePicker } from "@/components/ui/DateTimePicker";
 
 interface BookingFlowFormProps {
   defaultServiceSlug?: string;
@@ -157,7 +158,7 @@ export function BookingFlowForm({
         </Field>
 
         <Field label="When" required error={touched && errors.when} hint="Choose your date & time" className="sm:col-span-2">
-          <DateTimeInput value={when} onChange={setWhen} min={minDateTime} invalid={touched && errors.when} />
+          <DateTimePicker value={when} onChange={setWhen} min={minDateTime} invalid={touched && errors.when} />
         </Field>
 
         <Field label="Area" required>
@@ -169,7 +170,7 @@ export function BookingFlowForm({
           />
         </Field>
 
-        <Field label="Villa / Hotel name" required error={touched && errors.villa}>
+        <Field label="Location/Villa name" required error={touched && errors.villa}>
           <Input value={villa} onChange={setVilla} placeholder="e.g. Villa Asri, Berawa" invalid={touched && errors.villa} />
         </Field>
 
@@ -261,55 +262,6 @@ function Input({
       className={`w-full bg-black/20 border rounded-[10px] px-3.5 py-3.5 font-serif text-[15px] text-cream outline-none transition-colors placeholder:font-sans placeholder:text-[13px] placeholder:text-cream/35 focus:border-gold/60 ${
         invalid ? "border-[#e9a08f]/60" : "border-cream/10 hover:border-cream/25"
       }`}
-    />
-  );
-}
-
-function DateTimeInput({
-  value,
-  onChange,
-  min,
-  invalid
-}: {
-  value: string;
-  onChange: (v: string) => void;
-  min?: string;
-  invalid?: boolean;
-}) {
-  // Open the native picker when the field (anywhere) is clicked or focused,
-  // not just the small calendar icon.
-  const openPicker = (el: HTMLInputElement | null) => {
-    if (!el) return;
-    try {
-      (el as HTMLInputElement & { showPicker?: () => void }).showPicker?.();
-    } catch {
-      /* showPicker unsupported or not user-activated — ignore */
-    }
-  };
-
-  return (
-    <input
-      type="datetime-local"
-      value={value}
-      min={min}
-      onChange={(e) => onChange(e.target.value)}
-      onClick={(e) => openPicker(e.currentTarget)}
-      onFocus={(e) => openPicker(e.currentTarget)}
-      data-invalid={invalid ? "true" : undefined}
-      style={{ colorScheme: "dark" }}
-      className={[
-        "w-full bg-black/20 border rounded-[10px] px-3.5 py-3.5",
-        "font-serif text-[15px] text-cream outline-none transition-colors cursor-pointer",
-        "focus:border-gold/60",
-        "[&::-webkit-calendar-picker-indicator]:cursor-pointer",
-        "[&::-webkit-calendar-picker-indicator]:opacity-70",
-        "[&::-webkit-calendar-picker-indicator]:hover:opacity-100",
-        "[&::-webkit-calendar-picker-indicator]:[filter:invert(78%)_sepia(28%)_saturate(540%)_hue-rotate(2deg)_brightness(92%)]",
-        "[&::-webkit-datetime-edit]:text-cream",
-        "[&::-webkit-datetime-edit-fields-wrapper]:text-cream",
-        "[&:invalid]:text-cream/40",
-        invalid ? "border-[#e9a08f]/60" : "border-cream/10 hover:border-cream/25"
-      ].join(" ")}
     />
   );
 }

@@ -47,6 +47,7 @@ export function Select({ value, onValueChange, options, placeholder, ariaLabel }
         <RSelect.Content
           position="popper"
           sideOffset={6}
+          data-lenis-prevent
           className={cn(
             "z-[60] w-[var(--radix-select-trigger-width)] max-h-[300px] overflow-hidden",
             "bg-emerald-deep border border-cream/12 rounded-xl shadow-2xl shadow-black/50",
@@ -57,7 +58,7 @@ export function Select({ value, onValueChange, options, placeholder, ariaLabel }
             <Chevron up />
           </RSelect.ScrollUpButton>
 
-          <RSelect.Viewport className="p-1.5">
+          <RSelect.Viewport data-lenis-prevent className="p-1.5">
             {options.map((opt) => (
               <RSelect.Item
                 key={opt.value}
