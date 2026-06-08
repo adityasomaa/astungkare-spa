@@ -63,7 +63,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               })}
               <li className="pt-2">
                 <Link
-                  href={`/book?service=${service.slug}`}
+                  href={`/contact?service=${service.slug}`}
                   className="mt-2 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[color:var(--color-wa)] text-[#0a0a0a] font-semibold px-5 py-3.5 hover:brightness-105 transition"
                 >
                   <span aria-hidden>✦</span> Book {service.name}

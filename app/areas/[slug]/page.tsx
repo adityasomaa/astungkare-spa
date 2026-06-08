@@ -54,7 +54,7 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
 
             <div className="mt-10 flex flex-wrap gap-3">
               <Link
-                href={`/book?area=${area.slug}`}
+                href={`/contact?area=${area.slug}`}
                 className="inline-flex items-center gap-3 rounded-full bg-gold text-ink px-7 py-3.5 text-sm font-medium hover:bg-[#D6B57A] transition"
               >
                 Book in {area.name} <span aria-hidden>→</span>

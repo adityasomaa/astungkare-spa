@@ -4,22 +4,52 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 
 /**
- * Lenis smooth scroll, synced with GSAP ScrollTrigger.
+ * Lenis smooth scroll — DESKTOP ONLY.
+ * On touch devices (phones, tablets) Lenis is skipped entirely so native
+ * scrolling always works; in-page anchors fall back to native smooth scroll.
  * Disabled when prefers-reduced-motion.
  */
 export function SmoothScroll() {
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouch =
+      window.matchMedia("(pointer: coarse)").matches ||
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0;
+
+    // In-page anchor handler shared by both paths
+    function onClick(e: MouseEvent, lenis?: Lenis) {
+      const target = (e.target as HTMLElement)?.closest('a[href*="#"]') as HTMLAnchorElement | null;
+      if (!target) return;
+      const url = new URL(target.href, window.location.href);
+      if (url.pathname === window.location.pathname && url.hash) {
+        const el = document.querySelector(url.hash);
+        if (el) {
+          e.preventDefault();
+          if (lenis) lenis.scrollTo(el as HTMLElement, { offset: -80 });
+          else {
+            const y = (el as HTMLElement).getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
+        }
+      }
+    }
+
+    // Touch / reduced-motion: native scroll only, just wire smooth anchors.
+    if (isTouch || reduceMotion) {
+      const handler = (e: MouseEvent) => onClick(e);
+      document.addEventListener("click", handler);
+      return () => document.removeEventListener("click", handler);
+    }
+
+    // Desktop: Lenis smooth wheel
     const lenis = new Lenis({
       duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 1.6
+      smoothWheel: true
     });
-
-    // expose for anchor scrolling
     (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
 
     let rafId: number;
@@ -29,29 +59,17 @@ export function SmoothScroll() {
     }
     rafId = requestAnimationFrame(raf);
 
-    // Keep GSAP ScrollTrigger in sync if present
     const st = (window as unknown as { ScrollTrigger?: { update: () => void } }).ScrollTrigger;
     lenis.on("scroll", () => st?.update());
 
-    // smooth in-page anchor clicks (#services etc.)
-    function onClick(e: MouseEvent) {
-      const target = (e.target as HTMLElement)?.closest('a[href*="#"]') as HTMLAnchorElement | null;
-      if (!target) return;
-      const url = new URL(target.href, window.location.href);
-      if (url.pathname === window.location.pathname && url.hash) {
-        const el = document.querySelector(url.hash);
-        if (el) {
-          e.preventDefault();
-          lenis.scrollTo(el as HTMLElement, { offset: -80 });
-        }
-      }
-    }
-    document.addEventListener("click", onClick);
+    const handler = (e: MouseEvent) => onClick(e, lenis);
+    document.addEventListener("click", handler);
 
     return () => {
       cancelAnimationFrame(rafId);
-      document.removeEventListener("click", onClick);
+      document.removeEventListener("click", handler);
       lenis.destroy();
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
     };
   }, []);
 

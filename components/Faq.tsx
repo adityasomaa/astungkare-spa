@@ -23,7 +23,7 @@ export function Faq() {
           <p className="text-ink/60 mt-6 max-w-sm leading-relaxed text-sm">
             Ready when you are.{" "}
             <Link
-              href="/book"
+              href="/contact"
               className="underline underline-offset-4 decoration-gold/60 hover:text-emerald transition-colors"
             >
               Start your booking

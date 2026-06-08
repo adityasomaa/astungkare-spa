@@ -74,7 +74,7 @@ export default function AboutPage() {
 
           <div className="container-edge max-w-5xl mt-12 text-center">
             <Link
-              href="/book"
+              href="/contact"
               className="inline-flex items-center gap-3 rounded-full bg-ink text-cream px-7 py-4 text-sm font-medium hover:bg-emerald transition"
             >
               Book your treatment <span aria-hidden>→</span>

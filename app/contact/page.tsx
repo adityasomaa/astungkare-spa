@@ -7,12 +7,12 @@ import { StickyWa } from "@/components/StickyWa";
 import { BookingFlowForm } from "@/components/BookingFlowForm";
 
 export const metadata: Metadata = {
-  title: "Book your treatment",
+  title: "Contact & Booking",
   description: "Pick a treatment, when and where. We build the message, you confirm in WhatsApp.",
-  alternates: { canonical: "https://astungkarespa.com/book" }
+  alternates: { canonical: "https://astungkarespa.com/contact" }
 };
 
-export default function BookPage() {
+export default function ContactPage() {
   return (
     <>
       <Header />

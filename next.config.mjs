@@ -3,6 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     formats: ["image/avif", "image/webp"]
+  },
+  async redirects() {
+    return [
+      { source: "/book", destination: "/contact", permanent: true }
+    ];
   }
 };
 

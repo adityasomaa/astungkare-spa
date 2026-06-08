@@ -44,7 +44,7 @@ export function Hero() {
               <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
                 <Link
                   data-h-cta
-                  href="/book"
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-3 rounded-full bg-gold text-ink px-7 py-4 text-sm font-medium tracking-wide hover:bg-[#D6B57A] hover:scale-[1.02] transition"
                 >
                   Book your treatment

@@ -38,7 +38,7 @@ export function Footer() {
           <p className="eyebrow text-gold mb-4">Contact</p>
           <ul className="space-y-2.5 text-sm text-cream/70">
             <li>
-              <Link href="/book" className="hover:text-cream">Book a treatment</Link>
+              <Link href="/contact" className="hover:text-cream">Book a treatment</Link>
             </li>
             <li className="text-cream/55">{site.whatsappDisplay}</li>
             <li>
