@@ -31,15 +31,15 @@ export default function AboutPage() {
                 background: "linear-gradient(135deg, #c9a567 0%, #8a7146 70%)"
               }}>
                 <div className="w-full h-full flex items-end p-6">
-                  <p className="text-cream/80 text-xs tracking-[0.22em] uppercase">Galuh Parwati · Founder</p>
+                  <p className="text-cream/80 text-xs tracking-[0.22em] uppercase">Sriati · Founder</p>
                 </div>
               </div>
             </div>
 
             <div className="space-y-8 font-serif font-light text-xl text-ink/85 leading-relaxed">
               <p>
-                <span className="float-left text-7xl leading-none mr-3 font-serif font-light text-gold-deep mt-1">G</span>
-                aluh Parwati grew up watching her mother and aunties trade the small currency of touch — a shoulder pressed, a foot held — at the end of long days in the rice fields. Massage in Bali isn&rsquo;t a luxury. It&rsquo;s a daily, quiet kindness.
+                <span className="float-left text-7xl leading-none mr-3 font-serif font-light text-gold-deep mt-1">S</span>
+                riati grew up watching her mother and aunties trade the small currency of touch — a shoulder pressed, a foot held — at the end of long days in the rice fields. Massage in Bali isn&rsquo;t a luxury. It&rsquo;s a daily, quiet kindness.
               </p>
               <p>
                 Astungkare Spa was founded on a simple idea: take that kindness, train it to the standard of the finest hotel spa, and bring it to the rooms where guests already feel most at home. A villa terrace. A hotel suite. A balcony overlooking rice.
@@ -48,7 +48,7 @@ export default function AboutPage() {
                 Twelve trained therapists. One phone call. Every hour of every day.
               </p>
               <p>
-                Today, a team of trained therapists serves Canggu, Seminyak, Ubud and across the south — at every hour of every day. Every therapist is vetted, trained personally by Galuh, and held to a strictly therapeutic standard.
+                Today, a team of trained therapists serves Canggu, Seminyak, Ubud and across the south — at every hour of every day. Every therapist is vetted, trained personally by Sriati, and held to a strictly therapeutic standard.
               </p>
               <p>
                 <em>Astungkara</em>, in Balinese, is the word said in hope that something good unfolds. The word said over offerings at dawn and over rituals at dusk. We chose it because it is, quietly, what we wish for every guest:

@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { FirstVisitNotice } from "@/components/PolicyModal";
+import { PageLoader } from "@/components/PageLoader";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -60,6 +62,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <body>
+        <PageLoader />
+        <SmoothScroll />
         {children}
         <FirstVisitNotice />
         <GoogleAnalytics />

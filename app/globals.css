@@ -66,9 +66,24 @@
   from { opacity: 0; transform: translateX(20px); }
   to { opacity: 1; transform: translateX(0); }
 }
+@keyframes select-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes select-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-6px) scale(0.97); }
+}
 .animate-fade-in { animation: fade-in 0.32s cubic-bezier(.2,.65,.3,1); }
 .animate-fade-up { animation: fade-up 0.4s cubic-bezier(.2,.65,.3,1); }
 .animate-slide-in-right { animation: slide-in-right 0.38s cubic-bezier(.2,.65,.3,1); }
+.animate-select-in { animation: select-in 0.22s cubic-bezier(.2,.65,.3,1); }
+.animate-select-out { animation: select-out 0.16s ease-in; }
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
 
 @layer components {
   .container-edge {

@@ -16,7 +16,7 @@ export const site = {
     country: "ID"
   },
   hours: "24 hours · 7 days a week",
-  founder: "Galuh Parwati",
+  founder: "Sriati",
   socials: {
     instagram: "https://www.instagram.com/astungkarespa/",
     facebook: "https://www.facebook.com/astungkarespa"

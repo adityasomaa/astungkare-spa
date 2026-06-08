@@ -1,5 +1,5 @@
 const items = [
-  { k: "Trained, vetted therapists", d: "Every therapist personally trained by Galuh Parwati" },
+  { k: "Trained, vetted therapists", d: "Every therapist personally trained by Sriati" },
   { k: "Premium organic oils", d: "Cold-pressed, locally sourced, never reused" },
   { k: "Strictly therapeutic", d: "Zero tolerance for inappropriate requests" },
   { k: "Open 24 hours", d: "Late night, early morning, any day" }
