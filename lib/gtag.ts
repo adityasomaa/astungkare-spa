@@ -2,10 +2,10 @@
 // remarketing and conversion tracking of booking intents (WhatsApp confirmations).
 export const GADS_ID = "AW-18088777997";
 
-// Conversion label from a Google Ads "Conversion action" (e.g. "AbC-D_efGhIjk").
-// Until this is set, the WhatsApp confirmation still fires a GA4 `generate_lead`
-// event; the Google Ads conversion only records once the label exists.
-const CONVERSION_LABEL = process.env.NEXT_PUBLIC_GADS_CONVERSION_LABEL;
+// Conversion label from the Google Ads "WhatsApp Booking" conversion action.
+// Public value (ships in the client bundle by design); env can override it.
+const CONVERSION_LABEL =
+  process.env.NEXT_PUBLIC_GADS_CONVERSION_LABEL || "zHArCLiP7vEcEI2ys7FD";
 
 type GtagFn = (...args: unknown[]) => void;
 
