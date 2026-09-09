@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { policies, type Policy } from "@/content/policies";
 import { setPageScroll } from "@/lib/scroll-lock";
+import { grantAdConsent } from "@/lib/gtag";
 
 const COOKIE_KEY = "ask:cookie-consent";
 
@@ -19,6 +20,12 @@ export function EntryFlow() {
   const [step, setStep] = useState<Step>("idle");
 
   useEffect(() => {
+    // Re-grant ad consent for returning visitors who already accepted.
+    try {
+      if (localStorage.getItem(COOKIE_KEY) === "accepted") grantAdConsent();
+    } catch {
+      /* ignore */
+    }
     // small delay so it appears after the page settles
     const t = setTimeout(() => setStep("conduct"), 600);
     return () => clearTimeout(t);
@@ -46,6 +53,7 @@ export function EntryFlow() {
     } catch {
       /* ignore */
     }
+    if (choice === "accepted") grantAdConsent();
     setStep("done");
   }
 

@@ -1,16 +1,18 @@
 import Script from "next/script";
+import { GADS_ID } from "@/lib/gtag";
 
 export function GoogleAnalytics() {
-  const id = process.env.NEXT_PUBLIC_GA_ID;
-  if (!id) return null;
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  // gtag.js needs one id to bootstrap; the Ads tag is always present.
+  const primaryId = gaId || GADS_ID;
 
   return (
     <>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${id}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${primaryId}`}
         strategy="afterInteractive"
       />
-      <Script id="ga4-init" strategy="afterInteractive">
+      <Script id="gtag-init" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -22,7 +24,8 @@ export function GoogleAnalytics() {
             'wait_for_update': 500
           });
           gtag('js', new Date());
-          gtag('config', '${id}', { anonymize_ip: true });
+          ${gaId ? `gtag('config', '${gaId}', { anonymize_ip: true });` : ""}
+          gtag('config', '${GADS_ID}');
         `}
       </Script>
     </>

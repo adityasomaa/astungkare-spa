@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { services } from "@/content/services";
 import { areas } from "@/content/areas";
 import { buildWaUrl } from "@/lib/whatsapp";
+import { trackBookingConversion } from "@/lib/gtag";
 import { formatIdr } from "@/lib/pricing";
 import { PolicyLink } from "@/components/PolicyModal";
 import { Select } from "@/components/ui/Select";
@@ -115,6 +116,7 @@ export function BookingFlowForm({
       firstInvalid?.focus();
       return;
     }
+    trackBookingConversion(total);
     if (autoLaunchWa) window.open(waUrl, "_blank", "noopener,noreferrer");
   }
 
