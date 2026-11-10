@@ -2,6 +2,10 @@
 // remarketing and conversion tracking of booking intents (WhatsApp confirmations).
 export const GADS_ID = "AW-18088777997";
 
+// Google Tag Manager container run by the ads team (holds GA4). Shares the same
+// dataLayer and starts on the gtag('js') command pushed by <GoogleAnalytics>.
+export const GTM_ID = "GTM-5KW29MZ4";
+
 // Conversion label from the Google Ads "WhatsApp Booking" conversion action.
 // Public value (ships in the client bundle by design); env can override it.
 const CONVERSION_LABEL =

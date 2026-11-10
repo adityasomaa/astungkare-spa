@@ -1,5 +1,5 @@
 import Script from "next/script";
-import { GADS_ID } from "@/lib/gtag";
+import { GADS_ID, GTM_ID } from "@/lib/gtag";
 
 export function GoogleAnalytics() {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -28,6 +28,11 @@ export function GoogleAnalytics() {
           gtag('config', '${GADS_ID}');
         `}
       </Script>
+      {/* GTM's install snippet = this loader + the init above (don't add a second gtag('js')). */}
+      <Script
+        src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
+        strategy="afterInteractive"
+      />
     </>
   );
 }
